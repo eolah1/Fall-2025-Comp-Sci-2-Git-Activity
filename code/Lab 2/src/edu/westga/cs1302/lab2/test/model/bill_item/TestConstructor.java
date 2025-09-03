@@ -1,6 +1,7 @@
-package edu.westga.cs1302.lab2.tests.model.bill_item;
+package edu.westga.cs1302.lab2.test.model.bill_item;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +50,4 @@ class TestConstructor {
 		assertEquals(name, item.getName(), "checking item name");
 		assertEquals(amount, item.getAmount(), "checking amount value");
 	}
-	
-
 }

@@ -1,0 +1,44 @@
+commit b8f10b3427af2ba999544e23ee9ab5ecd933861d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 16:33:24 2025 -0400
+
+    Added Junit tests for getText()
+    Created tests to verify the string output of the method.
+    Covered cases for empty bills and bills with multiple items.
+
+commit 7a5c35a23a91db11497e0ad292b3481dc4ab4fb6
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 16:12:34 2025 -0400
+
+    Added Junit tests for addItem()
+    Tested when item was null and when item was a valid value
+
+commit 7af2c2008d23786ec05060caac17385b18a72a08
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 15:28:31 2025 -0400
+
+    Add tests for constructor
+    Wrote Junit test for BillItem constructor.
+    Covers edge cases and when name is null.
+
+commit 111ba7740473728ea12bc2dbf8949feb444451d5
+Author: Evan Olah <eolah1@my.westga.edu>
+Date:   Thu Aug 21 10:28:40 2025 -0400
+
+    Adding BAse Project
+    1) Adding Eclipse project to /code/
+
+commit 6ed59def44a059ade4c645178aa2a34d2c6caea0
+Author: Evan Olah <eolah1@my.westga.edu>
+Date:   Thu Aug 21 10:06:26 2025 -0400
+
+    Adding Base Project Structure
+    >
+    > 1) Creating the README for the Project (/README.md)
+    > 2) Creating the code directory for the project (/code/)
+
+commit 2b40d078e5faa95cf6d825b4fabcee4819d3ffe7
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Aug 19 10:04:41 2025 -0400
+
+    Initial commit

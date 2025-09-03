@@ -1,6 +1,8 @@
-package edu.westga.cs1302.lab2.tests.model.bill;
+package edu.westga.cs1302.lab2.test.model.bill;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +31,4 @@ class TestAddItem {
 		
 		assertEquals("item must not be null.", exception.getMessage());
 	}
-
 }
