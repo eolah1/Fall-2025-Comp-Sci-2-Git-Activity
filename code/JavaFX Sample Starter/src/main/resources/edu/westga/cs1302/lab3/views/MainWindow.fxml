@@ -13,9 +13,9 @@
    </padding>
    <children>
       <Label text="Name" />
-      <TextField fx:id="name" />
+      <TextField fx:id="nameBox" />
       <Label text="Amount" />
-      <TextField fx:id="amount" />
+      <TextField fx:id="amountBox" />
       <Button mnemonicParsing="false" onAction="#addItem" text="Add Item" />
       <TextArea fx:id="output" editable="false" prefHeight="200.0" prefWidth="200.0" />
    </children>
