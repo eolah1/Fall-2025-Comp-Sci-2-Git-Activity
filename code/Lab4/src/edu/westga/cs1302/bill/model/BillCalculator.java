@@ -19,7 +19,9 @@ public class BillCalculator {
 		double subTotal = 0.0;
 		
 		for (BillItem currItem : items) {
-			subTotal += currItem.getAmount();
+			if (currItem != null) {
+				subTotal += currItem.getAmount();
+			}
 		}
 		return subTotal;
 	}

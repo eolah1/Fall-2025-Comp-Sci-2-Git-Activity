@@ -43,7 +43,7 @@ public class BillView {
 		
 		return text;
 	}
-	
+	 
 	private static double roundToNearestHundredth(double value) {
 		return (int) (value * 100) / 100.0;
 	}
