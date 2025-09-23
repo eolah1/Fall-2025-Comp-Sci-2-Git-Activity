@@ -1,5 +1,6 @@
 package edu.westga.cs1302.project1.views;
 
+import edu.westga.cs1302.project1.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -25,7 +26,7 @@ public class MainWindow {
     private TextArea taskDescription;
 
     @FXML
-    private ListView<String> taskList;
+    private ListView<Task> taskList;
 
     @FXML
     private TextField taskName;
@@ -41,36 +42,54 @@ public class MainWindow {
 
     @FXML
     void addTask(ActionEvent event) {
-    	String name = this.taskName.getText();
-        String description = this.taskDescription.getText();
-        String priority = this.taskPriority.getValue();
-        
-        if (name == null || name.isEmpty()) {
-        	Alert alert = new Alert(Alert.AlertType.ERROR);
-        	alert.setContentText("Task name cannot be empty");
-        	alert.showAndWait();
-        	return;
-        }
-        
-        if (priority == null || priority.isEmpty()) {
-        	Alert alert = new Alert(Alert.AlertType.ERROR);
-        	alert.setContentText("Piority must be selected");
-        	alert.showAndWait();
-        	return;
-        }
-        
-        String tasksView = "(" + priority + ") " + name + "- " + description;
-        this.taskList.getItems().add(tasksView);
+    	
+    	try {
+	    	String name = this.taskName.getText();
+	        String description = this.taskDescription.getText();
+	        String priority = this.taskPriority.getValue();
+	        
+	        if (name == null || name.isEmpty()) {
+	        	Alert alert = new Alert(Alert.AlertType.ERROR);
+	        	alert.setContentText("Task name cannot be empty");
+	        	alert.showAndWait();
+	        	return;
+	        }
+	        
+	        if (description == null || description.isEmpty()) {
+	        	Alert alert = new Alert(Alert.AlertType.ERROR);
+	        	alert.setContentText("Task description cannot be empty");
+	        	alert.showAndWait();
+	        	return;
+	        }
+	        
+	        if (priority == null || priority.isEmpty()) {
+	        	Alert alert = new Alert(Alert.AlertType.ERROR);
+	        	alert.setContentText("Piority must be selected");
+	        	alert.showAndWait();
+	        	return;
+	        }
+	        
+	        Task tasksView = new Task(name, description, priority);
+	        this.taskList.getItems().add(tasksView);
+	        
+	    } catch (Exception error) {
+	        Alert alert = new Alert(Alert.AlertType.ERROR);
+	        alert.setHeaderText("Unexpected Error");
+	        alert.setContentText(error.getMessage());
+	        alert.showAndWait();
+	    }
     }
 
     @FXML
     void showSelectedTask(javafx.scene.input.MouseEvent event) {
-        String selectedTask = this.taskList.getSelectionModel().getSelectedItem();
+        Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
 
         if (selectedTask != null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Selected Task");
-            alert.setContentText(selectedTask);
+            alert.setContentText("Name: " + selectedTask.getName() + "\n"
+                    + "Description: " + selectedTask.getDescription() + "\n"
+                    + "Priority: " + selectedTask.getPriority());
             alert.showAndWait();
         } 
     }
