@@ -1,0 +1,121 @@
+commit 449457fcd698df29c5f31d3580f49ea1c219a628
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 14:48:20 2025 -0400
+
+    Updated calculateSubtotal and tests for BillCalculator
+    
+    Implemented tests that checked the methods for tax, tip, and subtotal
+    Updated calculate subTotal to check null
+
+commit 5f2dd365510712c6cf45a36002602152a368da9a
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 14:32:40 2025 -0400
+
+    Updated getText method to use new methods
+    
+    Delegates subtotal, tax, tip, and total calculations to BillCalcultor
+    class.
+
+commit 41af3039f94d561c22b2424daa101f61bcaf32a5
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 14:13:28 2025 -0400
+
+    Added BillCalculator class
+    
+    Implemented methods to calculate subtotal, tax, tips, and total
+    Implemented checkstyle fixes
+
+commit db10268a6c632feacde67d235bc427b1e948910d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 12:09:10 2025 -0400
+
+    Updated BillItem feilds to be final
+    
+    This ensures the field cannot be changed
+
+commit 90661e24ec4ae82be7787c2ad3dfc602b25c5419
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 14:21:47 2025 -0400
+
+    Applied CheckStyle fixes
+    
+    Applied a JavaDoc comment for addItem()
+
+commit f28f4f626f936ad4010944d344e0b0101a3df79b
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 14:01:03 2025 -0400
+
+    Implemented addItem() method
+    
+    Updates bill with new items and implements into textArea
+
+commit 3c9f3cf324d8361f377a183c7ea086575939bee3
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 12:42:04 2025 -0400
+
+    Designed a GUI
+    
+    Implemented text fields, text areas, and buttons
+
+commit f52fca0f9cf0d9522ed3f4616ff0a2fb0de67f4f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 10:47:44 2025 -0400
+
+    Setting up JavaFX Lab3
+    
+    Added bill model classes to javafx sample project
+    Did not implement test cases
+
+commit e1efa29fa85158bebf0a97a6ba563f741ce722b0
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 17:25:40 2025 -0400
+
+    Fixed checkstyle warnings
+    Added missing @param tag
+    Fixed spacing issues
+    And reformatted code.
+
+commit b8f10b3427af2ba999544e23ee9ab5ecd933861d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 16:33:24 2025 -0400
+
+    Added Junit tests for getText()
+    Created tests to verify the string output of the method.
+    Covered cases for empty bills and bills with multiple items.
+
+commit 7a5c35a23a91db11497e0ad292b3481dc4ab4fb6
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 16:12:34 2025 -0400
+
+    Added Junit tests for addItem()
+    Tested when item was null and when item was a valid value
+
+commit 7af2c2008d23786ec05060caac17385b18a72a08
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 15:28:31 2025 -0400
+
+    Add tests for constructor
+    Wrote Junit test for BillItem constructor.
+    Covers edge cases and when name is null.
+
+commit 111ba7740473728ea12bc2dbf8949feb444451d5
+Author: Evan Olah <eolah1@my.westga.edu>
+Date:   Thu Aug 21 10:28:40 2025 -0400
+
+    Adding BAse Project
+    1) Adding Eclipse project to /code/
+
+commit 6ed59def44a059ade4c645178aa2a34d2c6caea0
+Author: Evan Olah <eolah1@my.westga.edu>
+Date:   Thu Aug 21 10:06:26 2025 -0400
+
+    Adding Base Project Structure
+    >
+    > 1) Creating the README for the Project (/README.md)
+    > 2) Creating the code directory for the project (/code/)
+
+commit 2b40d078e5faa95cf6d825b4fabcee4819d3ffe7
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Aug 19 10:04:41 2025 -0400
+
+    Initial commit
