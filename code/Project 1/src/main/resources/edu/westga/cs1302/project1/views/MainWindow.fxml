@@ -5,8 +5,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" prefHeight="594.0" prefWidth="557.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.project1.views.MainWindow">
@@ -19,8 +19,8 @@
       <Label text="Task Description" />
       <TextArea fx:id="taskDescription" />
       <Label text="Piority" />
-      <ComboBox fx:id="taskPriority" onAction="#popUpFavorite" prefWidth="150.0" />
-      <Button mnemonicParsing="false" onAction="#addTitle" text="Add Task" />
-      <ListView fx:id="taskList" prefHeight="200.0" prefWidth="200.0" />
+      <ComboBox fx:id="taskPriority" prefWidth="150.0" />
+      <Button fx:id="addToList" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
+      <ListView fx:id="taskList" onMouseClicked="#showSelectedTask" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </VBox>
