@@ -24,6 +24,9 @@ public class MainWindow {
 	
 	@FXML
     private Button editDescription;
+	
+	@FXML
+    private Button removingTask;
 
     @FXML
     private TextArea taskDescription;
@@ -140,5 +143,19 @@ public class MainWindow {
             alert.showAndWait();
     	}
     	
+    }
+    
+    @FXML
+    void removeTask(ActionEvent event) {
+    	Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
+    	
+    	if (selectedTask != null) {
+    		this.taskList.getItems().remove(selectedTask);
+    	} else {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No Task Selected");
+            alert.setContentText("Please select a task to remove.");
+            alert.showAndWait();
+    	}
     }
 }

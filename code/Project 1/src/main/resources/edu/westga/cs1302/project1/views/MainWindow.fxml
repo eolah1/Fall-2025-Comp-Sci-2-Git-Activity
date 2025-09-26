@@ -47,6 +47,7 @@
                </HBox.margin>
             </ComboBox>
             <Button fx:id="addToList" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
+            <Button fx:id="removingTask" mnemonicParsing="false" onAction="#removeTask" text="Remove Task" />
          </children>
       </HBox>
       <ListView fx:id="taskList" onMouseClicked="#showSelectedTask" prefHeight="200.0" prefWidth="200.0" />
@@ -71,7 +72,7 @@
                   <Insets right="10.0" />
                </padding>
             </TextField>
-            <TextArea fx:id="selectedTaskDescription" editable ="true" prefHeight="0.0" prefWidth="200.0" />
+            <TextArea fx:id="selectedTaskDescription" editable="true" prefHeight="0.0" prefWidth="200.0" />
          </children>
          <VBox.margin>
             <Insets />
@@ -80,6 +81,13 @@
             <Insets left="30.0" />
          </padding>
       </HBox>
-      <Button fx:id="editDescription" mnemonicParsing="false" onAction="#changeDescription" text="Edit Description" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="562.0">
+         <children>
+            <Button fx:id="editDescription" mnemonicParsing="false" onAction="#changeDescription" text="Edit Description" />
+         </children>
+         <VBox.margin>
+            <Insets right="70.0" />
+         </VBox.margin>
+      </HBox>
    </children>
 </VBox>
