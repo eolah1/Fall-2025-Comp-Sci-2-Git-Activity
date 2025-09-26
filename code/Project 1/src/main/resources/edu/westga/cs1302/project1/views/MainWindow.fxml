@@ -7,24 +7,79 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="594.0" prefWidth="557.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.project1.views.MainWindow">
+<VBox alignment="CENTER" prefHeight="664.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.project1.views.MainWindow">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <Label text="Task Name" />
-      <TextField fx:id="taskName" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="448.0" />
-      <Label text="Task Description" />
-      <TextArea fx:id="taskDescription" />
-      <Label layoutX="-50.0" text="Piority" />
-      <ComboBox fx:id="taskPriority" prefWidth="150.0" />
-      <Button fx:id="addToList" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
+      <HBox prefHeight="32.0" prefWidth="562.0">
+         <children>
+            <Label text="Task Name" />
+            <TextField fx:id="taskName" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="456.0">
+               <HBox.margin>
+                  <Insets left="42.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="117.0" text="Task Description" />
+            <TextArea fx:id="taskDescription">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextArea>
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="562.0" spacing="70.0">
+         <children>
+            <Label text="Piority" />
+            <ComboBox fx:id="taskPriority" prefWidth="150.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ComboBox>
+            <Button fx:id="addToList" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
+         </children>
+      </HBox>
       <ListView fx:id="taskList" onMouseClicked="#showSelectedTask" prefHeight="200.0" prefWidth="200.0" />
-      <Label text="Selected Task Description" />
-      <TextArea fx:id="selectedTaskDescription" editable="false" prefHeight="200.0" prefWidth="200.0" />
-      <Label text="Selected Task Priority" />
-      <TextField fx:id="selectedTaskPriority" editable="false" />
+      <HBox prefHeight="13.0" prefWidth="562.0">
+         <children>
+            <Label text="Selected Task Priority">
+               <padding>
+                  <Insets left="50.0" right="150.0" />
+               </padding>
+            </Label>
+            <Label text="Selected Task Description">
+               <padding>
+                  <Insets left="60.0" right="50.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="47.0" prefWidth="518.0" spacing="160.0">
+         <children>
+            <TextField fx:id="selectedTaskPriority" alignment="TOP_LEFT" editable="false" prefHeight="50.0" prefWidth="150.0">
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </TextField>
+            <TextArea fx:id="selectedTaskDescription" editable="false" prefHeight="0.0" prefWidth="200.0" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="editDescription" mnemonicParsing="false" onAction="#changeDescription" text="Edit Description" />
    </children>
 </VBox>
