@@ -21,6 +21,9 @@ public class MainWindow {
 	
 	@FXML
     private Button addToList;
+	
+	@FXML
+    private Button editDescription;
 
     @FXML
     private TextArea taskDescription;
@@ -54,6 +57,7 @@ public class MainWindow {
      */
     private void displayErrorBox(String message) {
     	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setHeaderText("Error");
     	alert.setContentText(message);
     	alert.showAndWait();
     	return;
@@ -119,5 +123,22 @@ public class MainWindow {
                     + "Priority: " + selectedTask.getPriority());
             alert.showAndWait();
         } 
+    }
+    
+    @FXML
+    void changeDescription(ActionEvent event) {
+    	Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
+    	
+    	if (selectedTask != null) {
+    		String editedDescription = this.selectedTaskDescription.getText();
+    		selectedTask.setDescription(editedDescription);
+    		this.taskList.refresh();
+    	} else {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No Task Selected");
+            alert.setContentText("Please select a task to update its description.");
+            alert.showAndWait();
+    	}
+    	
     }
 }

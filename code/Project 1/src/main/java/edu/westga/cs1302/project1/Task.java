@@ -24,6 +24,10 @@ public class Task {
 		return this.priority;
 	}
 	
+	public void setDescription(String newDescription) {
+	    this.description = newDescription;
+	}
+	
 	public String toString() {
 	    return "(" + this.priority + ") " + this.name + " - " + this.description;
 	}
