@@ -26,10 +26,16 @@ public class MainWindow {
     private TextArea taskDescription;
 
     @FXML
+    private TextArea selectedTaskDescription;
+    
+    @FXML
     private ListView<Task> taskList;
 
     @FXML
     private TextField taskName;
+
+    @FXML
+    private TextField selectedTaskPriority;
 
     @FXML
     private ComboBox<String> taskPriority;
