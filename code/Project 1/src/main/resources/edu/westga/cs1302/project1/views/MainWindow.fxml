@@ -18,7 +18,7 @@
       <TextField fx:id="taskName" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="448.0" />
       <Label text="Task Description" />
       <TextArea fx:id="taskDescription" />
-      <Label text="Piority" />
+      <Label layoutX="-50.0" text="Piority" />
       <ComboBox fx:id="taskPriority" prefWidth="150.0" />
       <Button fx:id="addToList" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
       <ListView fx:id="taskList" onMouseClicked="#showSelectedTask" prefHeight="200.0" prefWidth="200.0" />

@@ -110,6 +110,8 @@ public class MainWindow {
         Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
 
         if (selectedTask != null) {
+        	this.selectedTaskDescription.setText(selectedTask.getDescription());
+            this.selectedTaskPriority.setText(selectedTask.getPriority());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Selected Task");
             alert.setContentText("Name: " + selectedTask.getName() + "\n"
