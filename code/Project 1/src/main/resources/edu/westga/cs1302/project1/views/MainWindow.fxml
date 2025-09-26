@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="664.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.project1.views.MainWindow">
+<VBox alignment="CENTER" prefHeight="702.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.project1.views.MainWindow">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -25,7 +25,7 @@
             </TextField>
          </children>
          <VBox.margin>
-            <Insets top="15.0" />
+            <Insets />
          </VBox.margin>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
@@ -50,22 +50,18 @@
             <Button fx:id="removingTask" mnemonicParsing="false" onAction="#removeTask" text="Remove Task" />
          </children>
       </HBox>
-      <ListView fx:id="taskList" onMouseClicked="#showSelectedTask" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="taskList" onMouseClicked="#showSelectedTask" prefHeight="140.0" prefWidth="562.0" />
       <HBox prefHeight="13.0" prefWidth="562.0">
          <children>
             <Label text="Selected Task Priority">
                <padding>
-                  <Insets left="50.0" right="150.0" />
+                  <Insets left="50.0" right="80.0" />
                </padding>
             </Label>
-            <Label text="Selected Task Description">
-               <padding>
-                  <Insets left="60.0" right="50.0" />
-               </padding>
-            </Label>
+            <Label text="Selected Task Description" />
          </children>
       </HBox>
-      <HBox prefHeight="47.0" prefWidth="518.0" spacing="160.0">
+      <HBox prefHeight="47.0" prefWidth="518.0" spacing="30.0">
          <children>
             <TextField fx:id="selectedTaskPriority" alignment="TOP_LEFT" editable="false" prefHeight="50.0" prefWidth="150.0">
                <padding>
@@ -73,6 +69,7 @@
                </padding>
             </TextField>
             <TextArea fx:id="selectedTaskDescription" editable="true" prefHeight="0.0" prefWidth="200.0" />
+            <Button fx:id="editDescription" mnemonicParsing="false" onAction="#changeDescription" text="Edit Description" />
          </children>
          <VBox.margin>
             <Insets />
@@ -82,12 +79,19 @@
          </padding>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="562.0">
-         <children>
-            <Button fx:id="editDescription" mnemonicParsing="false" onAction="#changeDescription" text="Edit Description" />
-         </children>
          <VBox.margin>
             <Insets right="70.0" />
          </VBox.margin>
+      </HBox>
+      <HBox prefHeight="20.0" prefWidth="562.0" spacing="100.0">
+         <children>
+            <Label fx:id="highPriorityCount" text="High" />
+            <Label fx:id="mediumPriorityCount" text="Medium" />
+            <Label fx:id="lowPriorityCount" text="Low" />
+         </children>
+         <padding>
+            <Insets left="135.0" />
+         </padding>
       </HBox>
    </children>
 </VBox>
