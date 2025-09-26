@@ -34,12 +34,31 @@ public class MainWindow {
     @FXML
     private ComboBox<String> taskPriority;
     
+    /**
+     * Initializes the ComboBox with priority options.
+     */
     public void initialize() {
-    	this.taskPriority.getItems().add("High");
-    	this.taskPriority.getItems().add("Medium");
-    	this.taskPriority.getItems().add("Low");
+    	this.taskPriority.getItems().addAll("High", "Medium", "Low");
+    }
+    
+    /**
+     * Displays an error alert with the specified message.
+     * 
+     * @param message the error message to display
+     */
+    private void displayErrorBox(String message) {
+    	Alert alert = new Alert(Alert.AlertType.ERROR);
+    	alert.setContentText(message);
+    	alert.showAndWait();
+    	return;
     }
 
+    /**
+     * Handles the event triggered by clicking the "Add Task" button.
+     * Validates input fields, creates a new Task object, and adds it to the ListView.
+     * 
+     * @param event the ActionEvent triggered by the button click
+     */
     @FXML
     void addTask(ActionEvent event) {
     	
@@ -49,23 +68,17 @@ public class MainWindow {
 	        String priority = this.taskPriority.getValue();
 	        
 	        if (name == null || name.isEmpty()) {
-	        	Alert alert = new Alert(Alert.AlertType.ERROR);
-	        	alert.setContentText("Task name cannot be empty");
-	        	alert.showAndWait();
+	        	this.displayErrorBox("Task name cannot be empty");
 	        	return;
 	        }
 	        
 	        if (description == null || description.isEmpty()) {
-	        	Alert alert = new Alert(Alert.AlertType.ERROR);
-	        	alert.setContentText("Task description cannot be empty");
-	        	alert.showAndWait();
+	        	this.displayErrorBox("Task description cannot be empty");
 	        	return;
 	        }
 	        
 	        if (priority == null || priority.isEmpty()) {
-	        	Alert alert = new Alert(Alert.AlertType.ERROR);
-	        	alert.setContentText("Piority must be selected");
-	        	alert.showAndWait();
+	        	this.displayErrorBox("Task priority must be selected");
 	        	return;
 	        }
 	        
@@ -80,6 +93,12 @@ public class MainWindow {
 	    }
     }
 
+    /**
+     * Handles the event triggered when a task in the ListView is clicked.
+     * Displays the selected task's details in an information alert.
+     * 
+     * @param event the MouseEvent triggered by clicking a task
+     */
     @FXML
     void showSelectedTask(javafx.scene.input.MouseEvent event) {
         Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
