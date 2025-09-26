@@ -128,6 +128,11 @@ public class MainWindow {
         } 
     }
     
+    /**
+     * Updates the description of the currently selected task in the ListView.
+     * 
+     * @param event the ActionEvent triggered by clicking the "Edit Description" button
+     */
     @FXML
     void changeDescription(ActionEvent event) {
     	Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
@@ -145,6 +150,11 @@ public class MainWindow {
     	
     }
     
+    /**
+     * Removes the currently selected task from the ListView.
+     * 
+     * @param event the ActionEvent triggered by clicking the "Remove Task" button
+     */
     @FXML
     void removeTask(ActionEvent event) {
     	Task selectedTask = this.taskList.getSelectionModel().getSelectedItem();
