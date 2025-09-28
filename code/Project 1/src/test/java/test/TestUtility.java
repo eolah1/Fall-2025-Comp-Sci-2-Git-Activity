@@ -13,7 +13,7 @@ import edu.westga.cs1302.project1.Utility;
 class TestUtility {
 
 	@Test
-    public void testCountTasksByPriorityWithMatches() {
+    public void testWithMatches() {
         List<Task> tasks = new ArrayList<>();
         tasks.add(new Task("Study", "Read", "High"));
         tasks.add(new Task("Exercise", "Run", "High"));
@@ -24,7 +24,7 @@ class TestUtility {
     }
 
     @Test
-    public void testCountTasksByPriorityWithNoMatches() {
+    public void testWithNoMatches() {
         List<Task> tasks = new ArrayList<>();
         tasks.add(new Task("Study", "Read", "Medium"));
         tasks.add(new Task("Relax", "Movie", "Low"));
@@ -34,14 +34,14 @@ class TestUtility {
     }
 
     @Test
-    public void testCountTasksByPriorityWithEmptyList() {
+    public void testWithEmptyList() {
         List<Task> tasks = new ArrayList<>();
         int result = Utility.countTaskPriority("High", tasks);
         assertEquals(0, result);
     }
 
     @Test
-    public void testCountTasksByPriorityWithNullPriority() {
+    public void testWithNullPriority() {
         List<Task> tasks = new ArrayList<>();
         tasks.add(new Task("Study", "Read", "High"));
 
@@ -50,7 +50,7 @@ class TestUtility {
     }
 
     @Test
-    public void testCountTasksByPriorityWithNullList() {
+    public void testWithNullList() {
         int result = Utility.countTaskPriority("High", null);
         assertEquals(0, result);
     }

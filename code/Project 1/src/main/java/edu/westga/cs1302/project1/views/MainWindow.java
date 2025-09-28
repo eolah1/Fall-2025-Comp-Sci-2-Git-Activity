@@ -1,9 +1,11 @@
 package edu.westga.cs1302.project1.views;
 
 import edu.westga.cs1302.project1.Task;
+import edu.westga.cs1302.project1.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
@@ -27,12 +29,24 @@ public class MainWindow {
 	
 	@FXML
     private Button removingTask;
+	
+	@FXML
+    private Button priorityCount;
 
     @FXML
     private TextArea taskDescription;
 
     @FXML
     private TextArea selectedTaskDescription;
+
+    @FXML
+    private Label highPriorityCount;
+
+    @FXML
+    private Label lowPriorityCount;
+
+    @FXML
+    private Label mediumPriorityCount;
     
     @FXML
     private ListView<Task> taskList;
@@ -167,5 +181,22 @@ public class MainWindow {
             alert.setContentText("Please select a task to remove.");
             alert.showAndWait();
     	}
+    }
+    
+    /**
+     * Updates the labels to show the number of tasks for each priority.
+     * Uses the Utility class to count tasks by priority.
+     */
+    @FXML
+    public void displayPriorityCounts() {
+        int highCount = Utility.countTaskPriority("High", this.taskList.getItems());
+        int mediumCount = Utility.countTaskPriority("Medium", this.taskList.getItems());
+        int lowCount = Utility.countTaskPriority("Low", this.taskList.getItems());
+
+        this.highPriorityCount.setText("High Priority Tasks: " + highCount);
+        this.mediumPriorityCount.setText("Medium Priority Tasks: " + mediumCount);
+        this.lowPriorityCount.setText("Low Priority Tasks: " + lowCount);
+        
+        //Havent Commited, Last part(Part c section 5)
     }
 }
