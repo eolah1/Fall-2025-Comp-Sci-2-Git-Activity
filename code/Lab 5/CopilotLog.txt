@@ -1,0 +1,258 @@
+Today
+Here is my current project: package edu.westga.cs1302.lab5.model; import java.util.List; /** Provides utility functions for grade calculations. * * @author CS 1302 * @version Fall 2025 */ public class GradeCalculator { /** Calculates average grade for a set of students. * * @precondition students != null * @postcondition none * * @param students the list of students to calculate average grade for * @return average grade if !students.isEmpty() * 0 if students.isEmpty() */ public static double calculateAverageGrade(List<Student> students) { if (students == null) { throw new IllegalArgumentException("no students provided."); } if (students.size() == 0) { throw new IllegalArgumentException("no students provided."); } int sumGrade = 0; for (Student student : students) { sumGrade += student.getGrade(); } return sumGrade / ((double) (students.size())); } } package edu.westga.cs1302.lab5.model; /** Stores and manages information for a single student. * * @author CS 1302 * @version Fall 2025 */ public class Student { private String name; private int grade; /** Create a new student with the specified name * * @precondition name != null && name.length() >= 3 * @postcondition getName() == name * * @param name the name of the new student * @param grade the grade for the new student * * @throws IllegalArgumentException when precondition is violated */ public Student(String name, int grade) throws IllegalArgumentException { if (name == null) { throw new IllegalArgumentException("Name must be provided."); } if (name.length() < 3) { throw new IllegalArgumentException("Name must have at least 3 characters."); } this.name = name; this.grade = grade; } /** Return the name of the student * * @return the name of the student */ public String getName() { return this.name; } /** Returns the grade for the student * * @return the grade for the student */ public int getGrade() { return this.grade; } @Override public String toString() { return this.name + " - " + this.grade; } } package edu.westga.cs1302.lab5.persistence; import java.io.File; import java.io.FileNotFoundException; import java.io.FileWriter; import java.io.IOException; import java.util.ArrayList; import java.util.Scanner; import edu.westga.cs1302.lab5.model.Student; /** Supports saving and loading student data, * * @author CS 1302 * @version Fall 2025 */ public class StudentDataPersistenceManager { public static final String FILE_LOCATION = "data.txt"; /** Save the students! * * @precondition students != null * @postcondition none * * @param students the set of students to save * @throws IllegalArgumentException if precondition is violated * @throws IOException Unable to write to FILE_LOCATION */ public static void saveStudentData(Student[] students) throws IOException, IllegalArgumentException { if (students == null) { throw new IllegalArgumentException("must provide an array of students"); } try (FileWriter writer = new FileWriter(StudentDataPersistenceManager.FILE_LOCATION)) { for (Student currStudent : students) { writer.write(currStudent.getName() + "," + currStudent.getGrade() + System.lineSeparator()); } } } /** Load the students! * * @precondition none * @postcondition none * * @return the set of students loaded * @throws FileNotFoundException no file exists at FILE_LOCATION * @throws IOException unable to read file due to formatting issue */ public static Student[] loadStudentData() throws FileNotFoundException, IOException { ArrayList<Student> students = new ArrayList<Student>(); File inputFile = new File(StudentDataPersistenceManager.FILE_LOCATION); try (Scanner reader = new Scanner(inputFile)) { while (reader.hasNextLine()) { String name = reader.nextLine(); if (!reader.hasNextLine()) { throw new IOException("missing grade for " + name); } int grade = Integer.parseInt(reader.nextLine()); students.add(new Student(name, grade)); } } catch (NumberFormatException error) { throw new IOException("grade value was not formatted as an integer (" + error.getMessage() + ")"); } catch (IllegalArgumentException error) { throw new IOException(error.getMessage()); } return students.toArray(new Student[0]); } } package edu.westga.cs1302.lab5.views; import java.io.IOException; import edu.westga.cs1302.lab5.model.GradeCalculator; import edu.westga.cs1302.lab5.model.Student; import edu.westga.cs1302.lab5.persistence.StudentDataPersistenceManager; import javafx.event.ActionEvent; import javafx.fxml.FXML; import javafx.scene.control.Alert; import javafx.scene.control.ListView; import javafx.scene.control.TextField; /** * Controller class for drawing various things to our canvas window. * * @author CS 1302 * @version Fall 2025 */ public class MainWindow { @FXML private TextField avgGrade; @FXML private TextField grade; @FXML private TextField name; @FXML private ListView<Student> students; @FXML void addStudent(ActionEvent event) { try { String name = this.name.getText(); int grade = Integer.parseInt(this.grade.getText()); Student student = new Student(name, grade); this.students.getItems().add(student); this.avgGrade.setText(Double.toString(GradeCalculator.calculateAverageGrade(this.students.getItems()))); } catch (NumberFormatException error) { Alert alert = new Alert(Alert.AlertType.ERROR); alert.setContentText("Invalid grade provided, must be an integer value. Please reenter grade."); alert.showAndWait(); } catch (IllegalArgumentException error) { Alert alert = new Alert(Alert.AlertType.ERROR); alert.setContentText("Unable to generate Student: " + error.getMessage() + ". Please reenter Student information."); alert.showAndWait(); } } @FXML void loadStudents(ActionEvent event) { this.loadStudents(); } private void loadStudents() { try { Student[] students = StudentDataPersistenceManager.loadStudentData(); this.students.getItems().clear(); this.students.getItems().addAll(students); } catch (IOException error) { Alert alert = new Alert(Alert.AlertType.ERROR); alert.setContentText(error.getMessage()); alert.showAndWait(); } } @FXML void saveStudents(ActionEvent event) { try { StudentDataPersistenceManager.saveStudentData(this.students.getItems().toArray(new Student[0])); } catch (Exception error) { Alert alert = new Alert(Alert.AlertType.ERROR); alert.setContentText(error.getMessage()); alert.showAndWait(); } } /** * Perform any needed initialization of UI components and underlying objects. */ public void initialize() { this.loadStudents(); } } package edu.westga.cs1302.lab5; import javafx.application.Application; import javafx.fxml.FXMLLoader; import javafx.scene.Parent; import javafx.scene.Scene; import javafx.stage.Stage; import java.io.IOException; /** * Entry point for the program * * @author CS 1302 * @version Fall 2025 */ public class Main extends Application { private static final String WINDOW_TITLE = "Course Management System"; private static final String GUI_RESOURCE = "views/MainWindow.fxml"; /** * JavaFX entry point. * * @precondition none * @postcondition none * * @throws IOException */ @Override public void start(Stage primaryStage) throws IOException { Parent parent = FXMLLoader.load(getClass().getResource(Main.GUI_RESOURCE)); Scene scene = new Scene(parent); primaryStage.setTitle(WINDOW_TITLE); primaryStage.setScene(scene); primaryStage.show(); } /** * Primary Java entry point. * * @precondition none * @postcondition none * * @param args command line arguments */ public static void main(String[] args) { Main.launch(args); } } module edu.westga.cs1302.lab5 { requires transitive javafx.controls; requires javafx.fxml; requires javafx.graphics; opens edu.westga.cs1302.lab5.views to javafx.fxml; exports edu.westga.cs1302.lab5; }
+Thanks for sharing your project! You've built a solid JavaFX-based student grade management system with clear separation of concerns across model, persistence, and view layers. Here are some observations and suggestions to help you refine and enhance it:
+
+✅ Strengths
+Modular Design: Your use of packages (model, persistence, views) shows good architectural thinking.
+
+Validation & Error Handling: You’ve implemented input validation and user-friendly error alerts.
+
+Persistence Layer: Saving and loading student data to a file is well-handled with appropriate exception management.
+
+JavaFX Integration: The UI controller (MainWindow) is clean and responsive, with good use of FXML bindings.
+
+🛠 Suggestions for Improvement
+1. File Format Consistency
+Your saveStudentData method writes each student on one line with comma separation, but loadStudentData expects two lines per student (name then grade). This mismatch will cause IOException on load.
+
+Fix: Either update the save method to write name and grade on separate lines:
+
+java
+writer.write(currStudent.getName() + System.lineSeparator());
+writer.write(currStudent.getGrade() + System.lineSeparator());
+Or update the load method to parse a single line:
+
+java
+String line = reader.nextLine();
+String[] parts = line.split(",");
+if (parts.length != 2) {
+    throw new IOException("Invalid format: " + line);
+}
+String name = parts[0];
+int grade = Integer.parseInt(parts[1]);
+2. Avoid Duplicate Exception Messages
+In GradeCalculator, both students == null and students.size() == 0 throw the same message. Consider distinguishing them:
+
+java
+if (students == null) {
+    throw new IllegalArgumentException("Student list is null.");
+}
+if (students.isEmpty()) {
+    return 0; // as per your method comment
+}
+3. Improve UI Responsiveness
+After loading students, you might want to update the average grade field:
+
+java
+this.avgGrade.setText(Double.toString(GradeCalculator.calculateAverageGrade(this.students.getItems())));
+4. Use ObservableList for Better JavaFX Integration
+Instead of converting arrays back and forth, consider using ObservableList<Student> throughout the view layer and persistence methods.
+
+5. Add Unit Tests
+Introduce JUnit tests for:
+
+Student constructor validation
+
+GradeCalculator.calculateAverageGrade
+
+StudentDataPersistenceManager save/load logic
+
+🌟 Bonus Ideas
+Add Sorting or Filtering: Let users sort students by grade or name.
+
+Add Export to CSV: Support exporting student data in CSV format for external use.
+
+Add Grade Distribution Chart: Use JavaFX charts to visualize grade distribution.
+
+Would you like help implementing any of these suggestions or adding new features like search or grade thresholds?
+
+what would you reccomend I do for: Feature - Load Student Data Your second task is to reimplement functionality to load the data for the current set of students when the load button is pressed. The students should be loaded from a file using the CSV format described in the previous task.
+To reimplement the Load Student Data feature using a proper CSV format, you'll want to update both your file reading logic and ensure the UI reflects the loaded data correctly. Here's a step-by-step recommendation tailored to your project:
+
+🧩 Step 1: Define the CSV Format
+Assuming your CSV format is:
+
+Code
+name,grade
+Alice,85
+Bob,92
+Charlie,78
+Each line represents one student with their name and grade separated by a comma.
+
+🛠 Step 2: Update loadStudentData() in StudentDataPersistenceManager
+Replace your current two-line-per-student logic with a CSV parser:
+
+java
+public static Student[] loadStudentData() throws FileNotFoundException, IOException {
+    ArrayList<Student> students = new ArrayList<>();
+    File inputFile = new File(StudentDataPersistenceManager.FILE_LOCATION);
+
+    try (Scanner reader = new Scanner(inputFile)) {
+        while (reader.hasNextLine()) {
+            String line = reader.nextLine();
+            String[] parts = line.split(",");
+            if (parts.length != 2) {
+                throw new IOException("Invalid CSV format: " + line);
+            }
+
+            String name = parts[0].trim();
+            int grade;
+            try {
+                grade = Integer.parseInt(parts[1].trim());
+            } catch (NumberFormatException e) {
+                throw new IOException("Grade must be an integer: " + parts[1]);
+            }
+
+            students.add(new Student(name, grade));
+        }
+    } catch (IllegalArgumentException error) {
+        throw new IOException(error.getMessage());
+    }
+
+    return students.toArray(new Student[0]);
+}
+🎯 Step 3: Ensure the Save Method Matches CSV Format
+Update saveStudentData() to write one line per student in CSV format:
+
+java
+writer.write(currStudent.getName() + "," + currStudent.getGrade() + System.lineSeparator());
+🧪 Step 4: Update the UI Controller (MainWindow)
+After loading students, update the average grade field:
+
+java
+private void loadStudents() {
+    try {
+        Student[] students = StudentDataPersistenceManager.loadStudentData();
+        this.students.getItems().clear();
+        this.students.getItems().addAll(students);
+        this.avgGrade.setText(Double.toString(GradeCalculator.calculateAverageGrade(this.students.getItems())));
+    } catch (IOException error) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(error.getMessage());
+        alert.showAndWait();
+    }
+}
+✅ Final Touches
+Make sure data.txt exists and follows the CSV format.
+
+Consider adding a header row (name,grade) if needed, and skip it during parsing.
+
+Add unit tests to validate CSV parsing and error handling.
+
+Would you like help writing a test case or adding support for headers in the CSV file?
+
+Does .trim just cut off extra white space
+Exactly — .trim() in Java removes any leading and trailing whitespace from a string. That includes spaces, tabs (\t), and newline characters (\n, \r) at the beginning or end of the string.
+
+Here’s a quick example:
+
+java
+String raw = "   Alice   ";
+String cleaned = raw.trim();
+System.out.println(cleaned); // Output: "Alice"
+It does not remove spaces inside the string (like between words). So " Alice Smith ".trim() becomes "Alice Smith" — the internal space stays intact.
+
+This is super useful when parsing input from files or user forms, where extra spaces can sneak in and cause bugs.
+
+what about empty lines in this situation
+Great question — empty lines in your CSV file can definitely cause issues if not handled properly during the loading process. If your file contains blank lines like this:
+
+Code
+Alice,85
+
+Bob,92
+
+Charlie,78
+Then your current loadStudentData() method might try to parse those empty lines and throw an exception.
+
+✅ Recommended Fix: Skip Empty Lines
+You can add a simple check to ignore blank lines before parsing:
+
+java
+while (reader.hasNextLine()) {
+    String line = reader.nextLine().trim();
+    if (line.isEmpty()) {
+        continue; // skip empty lines
+    }
+
+    String[] parts = line.split(",");
+    if (parts.length != 2) {
+        throw new IOException("Invalid CSV format: " + line);
+    }
+
+    String name = parts[0].trim();
+    int grade;
+    try {
+        grade = Integer.parseInt(parts[1].trim());
+    } catch (NumberFormatException e) {
+        throw new IOException("Grade must be an integer: " + parts[1]);
+    }
+
+    students.add(new Student(name, grade));
+}
+This way, any line that’s just whitespace or completely blank will be ignored safely.
+
+Let me know if you’d like to add support for a header row too (like name,grade) — that’s another common CSV feature!
+
+I tweaked the code a little but are there any reccomendations you have: try (Scanner reader = new Scanner(inputFile)) { while (reader.hasNextLine()) { String line = reader.nextLine(); if (line.isEmpty()) { continue; } String[] parts = line.split(","); if (parts.length != 2) { throw new IOException("Invalid format in line: " + line); } String name = parts[0].trim(); int grade; try { grade = Integer.parseInt(parts[1].trim()); } catch (NumberFormatException error) { throw new IOException("Grade is not a valid integer in line: " + line); } students.add(new Student(name, grade)); } } catch (IllegalArgumentException error) { throw new IOException(error.getMessage()); }
+Your updated code is looking solid — it’s clean, readable, and handles common edge cases well. Here are a few thoughtful refinements to make it even more robust and maintainable:
+
+✅ Recommendations
+1. Use line.trim().isEmpty() Instead of line.isEmpty()
+This ensures lines with only whitespace (e.g., " ") are also skipped.
+
+java
+if (line.trim().isEmpty()) {
+    continue;
+}
+2. Add Line Number Tracking for Better Error Messages
+This helps pinpoint exactly where the issue is in the file:
+
+java
+int lineNumber = 0;
+while (reader.hasNextLine()) {
+    lineNumber++;
+    String line = reader.nextLine();
+    if (line.trim().isEmpty()) {
+        continue;
+    }
+
+    String[] parts = line.split(",");
+    if (parts.length != 2) {
+        throw new IOException("Invalid format at line " + lineNumber + ": " + line);
+    }
+
+    String name = parts[0].trim();
+    int grade;
+    try {
+        grade = Integer.parseInt(parts[1].trim());
+    } catch (NumberFormatException error) {
+        throw new IOException("Grade is not a valid integer at line " + lineNumber + ": " + line);
+    }
+
+    students.add(new Student(name, grade));
+}
+3. Consider Skipping Invalid Lines Instead of Failing Entire Load
+If you're aiming for resilience, you could log and skip bad lines rather than throwing:
+
+java
+System.err.println("Skipping invalid line " + lineNumber + ": " + line);
+continue;
+But this depends on your design goals — if data integrity is critical, your current approach is better.
+
+4. Optional: Support Header Row
+If your CSV includes a header like name,grade, you can skip it:
+
+java
+boolean isFirstLine = true;
+while (reader.hasNextLine()) {
+    String line = reader.nextLine();
+    if (isFirstLine) {
+        isFirstLine = false;
+        if (line.trim().equalsIgnoreCase("name,grade")) {
+            continue;
+        }
+    }
+    // continue parsing...
+}
+Would you like help adding unit tests for this method or making it more flexible for different file formats?
