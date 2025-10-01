@@ -54,7 +54,7 @@ public class StudentDataPersistenceManager {
 		try (Scanner reader = new Scanner(inputFile)) {
 			while (reader.hasNextLine()) {
 				String line = reader.nextLine();
-				if (line.isEmpty()) {
+				if (line.trim().isEmpty()) {
 					continue;
 				}
 				String[] parts = line.split(",");
