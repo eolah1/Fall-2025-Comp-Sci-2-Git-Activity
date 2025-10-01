@@ -196,7 +196,5 @@ public class MainWindow {
         this.highPriorityCount.setText("High Priority Tasks: " + highCount);
         this.mediumPriorityCount.setText("Medium Priority Tasks: " + mediumCount);
         this.lowPriorityCount.setText("Low Priority Tasks: " + lowCount);
-        
-        //Havent Commited, Last part(Part c section 5)
     }
 }

@@ -2,8 +2,6 @@ package edu.westga.cs1302.project1;
 
 import java.util.List;
 
-import javafx.scene.control.Alert;
-
 /**
  * Utility class for performing operations on lists of Task objects.
  * 
