@@ -82,17 +82,33 @@ public class MainWindow {
     @FXML
     void sortTasks(ActionEvent event) {
     	Comparator<Task> selectedComparator = this.order.getValue();
-    	if (selectedComparator != null) {
-    		FXCollections.sort(this.tasks.getItems(), selectedComparator);
+    	
+    	if (selectedComparator == null) {
+    		this.showAlert("Please select a sort order.");
+    		return;
     	}
+    	
+    	if (this.tasks.getItems().isEmpty()) {
+    		this.showAlert("There are no tasks to sort");
+    		return;
+    	}
+    	
+    	FXCollections.sort(this.tasks.getItems(), selectedComparator);
     }
 
+    private void showAlert(String message) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+    
     /** Perform any needed initialization of UI components and underlying objects.
      * 
      */
     public void initialize() {
     	this.priority.getItems().addAll(TaskPriority.HIGH, TaskPriority.MEDIUM, TaskPriority.LOW);
-    	this.priority.setValue(this.priority.getItems().get(0));
+    	this.priority.setValue(this.priority.getItems().get(0));    
     	
     	this.order.getItems().addAll(new Ascending(), new Descending());
     }

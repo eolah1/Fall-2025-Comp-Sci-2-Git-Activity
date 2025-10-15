@@ -8,12 +8,11 @@ import java.util.Comparator;
  * @version CS 1302
  * @author Fall 2025
  */
-
 public class Ascending implements Comparator<Task> {
 
 	@Override
 	public int compare(Task t1, Task t2) {
-		return t1.getPriority().compareTo(t2.getPriority());
+		return t2.getPriority().compareTo(t1.getPriority());
 	}
 	
 	@Override 
