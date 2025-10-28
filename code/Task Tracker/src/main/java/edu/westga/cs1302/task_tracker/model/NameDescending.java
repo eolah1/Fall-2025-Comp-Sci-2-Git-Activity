@@ -36,7 +36,7 @@ public class NameDescending implements Comparator<Task>{
 	
 	@Override
 	public String toString() {
-		return "Descending name";
+		return "Descending Name";
 	}
 
 }
