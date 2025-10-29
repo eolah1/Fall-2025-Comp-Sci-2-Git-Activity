@@ -69,6 +69,16 @@ public class MainWindow {
     	}
     }
     
+    /** Add a new subtask to the currently selected task.
+     * 
+     * @precondition a task must be selected in the listview &&
+     *               the name, description, and priority fields must contain valid values
+     * @postcondition the selected task in the listview will be replaced with a new task 
+     *                that includes the subtask && the subtask listview will
+     *                be updated to display the subtasks of the updated task
+     * 
+     * @param event we will not use this parameter, only here due to JavaFX Library requirement
+     */
     @FXML
     void addSubTask(ActionEvent event) {
     	Task selectedTask = this.tasks.getSelectionModel().getSelectedItem();
@@ -171,6 +181,49 @@ public class MainWindow {
     		this.tasks.getItems().sort(this.order.getValue());
     	}
     }
+    
+    /** Display the list of subtasks for the provided task.
+     * 
+     * @precondition task != null
+     * @postcondition the subtask listview will display all subtasks of the provided task,
+     *                or be cleared if the task has no subtasks
+     * 
+     * @param task the task whose subtasks will be displayed
+     */
+    private void displaySubTasks(Task task) {
+        if (task.getSubTasks().isEmpty()) {
+            this.subTasks.getItems().clear();
+        } else {
+            this.subTasks.getItems().setAll(task.getSubTasks());
+        }
+    }
+    
+    /**
+     * Displays the details of the selected subtask in the name, description,
+     * and priority fields.
+     * 
+     * @precondition  none
+     * @postcondition The text fields and combo box show the selected subtask’s
+     *                name, description, and priority. If no subtask is selected,
+     *                fields are cleared.
+     * 
+     * @param event   the event triggered by selecting a subtask
+     */
+    @FXML
+    void displaySelectedSubTask(MouseEvent event) {
+        Task selectedSubTask = this.subTasks.getSelectionModel().getSelectedItem();
+
+        if (selectedSubTask == null) {
+            this.name.clear();
+            this.description.clear();
+            this.priority.getSelectionModel().clearSelection();
+            return;
+        }
+
+        this.name.setText(selectedSubTask.getName());
+        this.description.setText(selectedSubTask.getDescription());
+        this.priority.setValue(selectedSubTask.getPriority());
+    }
 
     /** Perform any needed initialization of UI components and underlying objects.
      * 
@@ -189,11 +242,4 @@ public class MainWindow {
     	this.priority.setValue(this.priority.getItems().get(0));
     }
     
-    private void displaySubTasks(Task task) {
-        if (task.getSubTasks().isEmpty()) {
-            this.subTasks.getItems().clear();
-        } else {
-            this.subTasks.getItems().setAll(task.getSubTasks());
-        }
-    }
 }

@@ -33,7 +33,7 @@
       <Button layoutX="285.0" layoutY="347.0" mnemonicParsing="false" onAction="#updateDescription" text="Update Description" />
       <Label layoutX="30.0" layoutY="395.0" text="Sort Tasks" />
       <ComboBox fx:id="order" layoutX="86.0" layoutY="391.0" onAction="#sortTasks" prefHeight="25.0" prefWidth="128.0" />
-      <Button fx:id="addSubTasks" layoutX="37.0" layoutY="456.0" mnemonicParsing="false" onAction="#addSubTask" text="SubTasks" />
-      <ListView fx:id="subTasks" layoutX="123.0" layoutY="456.0" prefHeight="106.0" prefWidth="357.0" />
+      <Button fx:id="addSubTasks" layoutX="25.0" layoutY="456.0" mnemonicParsing="false" onAction="#addSubTask" text="Add Sub Task" />
+      <ListView fx:id="subTasks" layoutX="123.0" layoutY="456.0" onMouseClicked="#displaySelectedSubTask" prefHeight="106.0" prefWidth="357.0" />
    </children>
 </AnchorPane>

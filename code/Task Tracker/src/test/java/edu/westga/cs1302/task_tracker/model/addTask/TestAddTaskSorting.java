@@ -1,4 +1,4 @@
-package edu.westga.cs1302.task_tracker.view.addTask;
+package edu.westga.cs1302.task_tracker.model.addTask;
 
 import static org.junit.jupiter.api.Assertions.*;
 
