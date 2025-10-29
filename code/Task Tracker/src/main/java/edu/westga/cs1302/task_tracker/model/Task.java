@@ -1,7 +1,6 @@
 package edu.westga.cs1302.task_tracker.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /** Stores basic information for a Task

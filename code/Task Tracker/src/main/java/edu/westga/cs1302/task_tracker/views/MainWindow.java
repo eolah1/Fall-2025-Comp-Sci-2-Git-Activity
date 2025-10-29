@@ -212,17 +212,14 @@ public class MainWindow {
     @FXML
     void displaySelectedSubTask(MouseEvent event) {
         Task selectedSubTask = this.subTasks.getSelectionModel().getSelectedItem();
-
-        if (selectedSubTask == null) {
-            this.name.clear();
-            this.description.clear();
-            this.priority.getSelectionModel().clearSelection();
-            return;
-        }
-
-        this.name.setText(selectedSubTask.getName());
-        this.description.setText(selectedSubTask.getDescription());
-        this.priority.setValue(selectedSubTask.getPriority());
+        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("SubTask Information");
+        alert.setHeaderText(selectedSubTask.getName());
+        alert.setContentText("Priority: " + selectedSubTask.getPriority() 
+        	+ "\n\n" + "Description: " + selectedSubTask.getDescription()
+        ); 
+        alert.showAndWait();
     }
 
     /** Perform any needed initialization of UI components and underlying objects.

@@ -7,7 +7,7 @@ import java.util.Comparator;
  * @author CS 1302
  * @version Fall 2025
  */
-public class NameDescending implements Comparator<Task>{
+public class NameDescending implements Comparator<Task> {
 
 	/** Returns a value indicating ordering of the two tasks based 
 	 * on Descending name.
