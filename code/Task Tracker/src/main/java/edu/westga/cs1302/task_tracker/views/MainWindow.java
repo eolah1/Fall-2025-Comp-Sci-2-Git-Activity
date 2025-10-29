@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -36,6 +37,8 @@ public class MainWindow {
     @FXML private TextField selectedPriority;
     @FXML private ListView<Task> tasks;
     @FXML private ComboBox<Comparator<Task>> order;
+    @FXML private Button addSubTasks;
+    @FXML private ListView<Task> subTasks;
 
     /** Add a new task with the provided information to the listview.
      * 
@@ -65,6 +68,33 @@ public class MainWindow {
     		alert.showAndWait();
     	}
     }
+    
+    @FXML
+    void addSubTask(ActionEvent event) {
+    	Task selectedTask = this.tasks.getSelectionModel().getSelectedItem();
+
+        if (selectedTask == null) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("Please select a task to add a subtask to.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            Task subTask = new Task(this.name.getText(), this.description.getText(), this.priority.getValue());
+            Task updatedTask = selectedTask.addTask(subTask);
+
+            int index = this.tasks.getItems().indexOf(selectedTask);
+            this.tasks.getItems().set(index, updatedTask);
+
+            this.displaySubTasks(updatedTask);
+
+        } catch (IllegalArgumentException error) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setContentText(error.getMessage());
+            alert.showAndWait();
+        }
+    }
 
     /** Display the priority and description of the task selected in the listview.
      * 
@@ -80,6 +110,7 @@ public class MainWindow {
     	if (selectedTask != null) {
     		this.selectedPriority.setText(selectedTask.getPriority().toString());
     		this.selectedDescription.setText(selectedTask.getDescription());
+    		this.displaySubTasks(selectedTask);
     	}
     }
 
@@ -156,5 +187,13 @@ public class MainWindow {
     	this.order.getItems().add(new NameAscending());
     	this.order.getItems().add(new NameDescending());
     	this.priority.setValue(this.priority.getItems().get(0));
+    }
+    
+    private void displaySubTasks(Task task) {
+        if (task.getSubTasks().isEmpty()) {
+            this.subTasks.getItems().clear();
+        } else {
+            this.subTasks.getItems().setAll(task.getSubTasks());
+        }
     }
 }
