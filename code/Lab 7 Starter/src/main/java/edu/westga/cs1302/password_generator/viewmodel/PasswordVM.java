@@ -59,25 +59,50 @@ public class PasswordVM {
         });
 	}
 	
-	public IntegerProperty getMinimumLength() {
-	    return this.minimumLength;
-	}
+    /**
+     * Gets the minimum length property.
+     * 
+     * @return the minimum length property
+     */
+    public IntegerProperty getMinimumLength() {
+        return this.minimumLength;
+    }
 
-	public BooleanProperty getMustHaveAtLeastOneDigit() {
-	    return this.mustHaveAtLeastOneDigit;
-	}
+    /**
+     * Gets the digit requirement property.
+     * 
+     * @return the digit requirement property
+     */
+    public BooleanProperty getMustHaveAtLeastOneDigit() {
+        return this.mustHaveAtLeastOneDigit;
+    }
 
-	public BooleanProperty getMustHaveAtLeastOneUpperCaseLetter() {
-	    return this.mustHaveAtLeastOneUpperCaseLetter;
-	}
+    /**
+     * Gets the uppercase letter requirement property.
+     * 
+     * @return the uppercase letter requirement property
+     */
+    public BooleanProperty getMustHaveAtLeastOneUpperCaseLetter() {
+        return this.mustHaveAtLeastOneUpperCaseLetter;
+    }
 
-	public BooleanProperty getMustHaveAtLeastOneLowerCaseLetter() {
-	    return this.mustHaveAtLeastOneLowerCaseLetter;
-	}
+    /**
+     * Gets the lowercase letter requirement property.
+     * 
+     * @return the lowercase letter requirement property
+     */
+    public BooleanProperty getMustHaveAtLeastOneLowerCaseLetter() {
+        return this.mustHaveAtLeastOneLowerCaseLetter;
+    }
 
-	public StringProperty getGeneratedPass() {
-	    return this.generatedPass;
-	}
+    /**
+     * Gets the generated password property.
+     * 
+     * @return the generated password property
+     */
+    public StringProperty getGeneratedPass() {
+        return this.generatedPass;
+    }
 	
 	/**
 	 * Generates a password using the model and updates the property.
