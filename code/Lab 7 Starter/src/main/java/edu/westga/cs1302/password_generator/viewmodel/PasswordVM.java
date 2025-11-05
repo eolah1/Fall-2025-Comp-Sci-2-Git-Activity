@@ -59,6 +59,26 @@ public class PasswordVM {
         });
 	}
 	
+	public IntegerProperty getMinimumLength() {
+	    return this.minimumLength;
+	}
+
+	public BooleanProperty getMustHaveAtLeastOneDigit() {
+	    return this.mustHaveAtLeastOneDigit;
+	}
+
+	public BooleanProperty getMustHaveAtLeastOneUpperCaseLetter() {
+	    return this.mustHaveAtLeastOneUpperCaseLetter;
+	}
+
+	public BooleanProperty getMustHaveAtLeastOneLowerCaseLetter() {
+	    return this.mustHaveAtLeastOneLowerCaseLetter;
+	}
+
+	public StringProperty getGeneratedPass() {
+	    return this.generatedPass;
+	}
+	
 	/**
 	 * Generates a password using the model and updates the property.
 	 * 
