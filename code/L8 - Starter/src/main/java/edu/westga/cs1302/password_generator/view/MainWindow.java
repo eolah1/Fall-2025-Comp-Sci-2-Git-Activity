@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 
 /** Codebehind for the MainWindow of the Application.
  * 
@@ -19,9 +19,9 @@ public class MainWindow {
     @FXML private CheckBox mustIncludeLowerCaseLetters;
     @FXML private CheckBox mustIncludeUpperCaseLetters;
     @FXML private TextField minimumLength;
-    @FXML private TextArea output;
     @FXML private Label errorTextLabel;
     @FXML private Button generatePasswordButton;
+    @FXML private ListView<String> output;
     
     private ViewModel vm;
     
@@ -35,7 +35,7 @@ public class MainWindow {
     	this.minimumLength.textProperty().addListener((obs, oldVal, newVal) -> {
     	    this.vm.isValidMinimumLength(newVal);
     	});
-    	this.output.textProperty().bind(this.vm.getPassword());
+    	this.output.setItems(this.vm.getPasswordLog());
     	this.errorTextLabel.textProperty().bind(this.vm.getErrorText());
     	
     	this.generatePasswordButton.setOnAction(

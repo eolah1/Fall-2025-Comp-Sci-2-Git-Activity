@@ -7,6 +7,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /** Manages utilizing the model and makes properties available to bind the UI elements.
  * 
@@ -23,6 +25,8 @@ public class ViewModel {
 	private StringProperty errorText;
 	
     private PasswordGenerator generator;
+    
+    private ObservableList<String> passwordLog = FXCollections.observableArrayList();
 	
 	/** Initialize the properties for the viewmodel
 	 */
@@ -79,6 +83,14 @@ public class ViewModel {
 		return this.password;
 	}
 	
+	/**
+     * Sets the error message to display
+     * 
+     * @precondition message != null
+     * @postcondition returns message
+     * 
+     * @param message the error message to display
+     */
 	public void setErrorText(String message) {
 	    this.errorText.set(message);
 	}
@@ -98,7 +110,7 @@ public class ViewModel {
 	 * If an error is encountered, the password property is set to empty, and the error text property is populated with a message describing the problem.
 	 */
 	public void generatePassword() {
-    	int minimumLength = -1;
+    	int minimumLength;
     	this.password.setValue("");
     	
     	try {
@@ -120,10 +132,33 @@ public class ViewModel {
     	this.generator.setMustHaveAtLeastOneUpperCaseLetter(this.requireUppercase.getValue());
     	
     	String password = this.generator.generatePassword();
-    	
     	this.password.setValue(password);
+    	this.errorText.set("");
+    	
+    	this.passwordLog.add(password);
     }
 
+	/**
+	 * Returns the list of all previously generated passwords.
+	 * 
+	 * @precondition none
+	 * @postcondition result != null
+	 * 
+	 * @return the list of all previously generated passwords
+	 */
+	public ObservableList<String> getPasswordLog() {
+		return this.passwordLog;
+	}
+
+	/**
+	 * Validates the given input as a minimum password length.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param input the string to validate as a minimum length
+	 * @return true if the input is a valid positive whole number ≥ 1; false otherwise
+	 */
 	public boolean isValidMinimumLength(String input) {
 		if (!input.matches("\\d+")) {
 	        this.setErrorText("Minimum length must be a positive whole number.");
