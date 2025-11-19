@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import edu.westga.cs1302.coursegui.view.AlertProperty;
 import edu.westga.cs1302.password_generator.viewmodel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -46,12 +47,11 @@ public class MainWindow {
     	this.vm.getRequireLowercase().bind(this.mustIncludeLowerCaseLetters.selectedProperty());
     	this.vm.getRequireUppercase().bind(this.mustIncludeUpperCaseLetters.selectedProperty());
     	this.minimumLength.setText(this.vm.getMinimumLength().getValue());
-    	this.vm.getMinimumLength().bind(this.minimumLength.textProperty());
     	
     	this.errorTextLabel.textProperty().bind(this.vm.getErrorText());
     	this.passwordHistory.setItems(this.vm.getPasswordHistory());
     	
-    	this.minimumLength.textProperty().addListener((observable, newValue, oldValue) -> {
+    	this.minimumLength.textProperty().addListener((observable, oldValue, newValue) -> {
     		this.minLengthErrorText.setVisible(!newValue.matches("\\d+") || Integer.parseInt(newValue) == 0);
     	});
     	
@@ -78,6 +78,11 @@ public class MainWindow {
         			this.handleClose();
         		}
         	);
+    	
+    	this.generatePasswordButton.disableProperty().bind(this.vm.getInputValid().not());
+    	this.minimumLength.textProperty().addListener((obs, oldVal, newVal) -> {
+    		this.vm.validateMinimumLength(newVal);
+    	});
     }
 
 	private void handleClose() {

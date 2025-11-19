@@ -27,6 +27,7 @@ public class ViewModel {
 	private StringProperty errorText;
 	
     private PasswordGenerator generator;
+	private SimpleBooleanProperty inputValid;
 	
 	/** Initialize the properties for the viewmodel
 	 */
@@ -38,11 +39,20 @@ public class ViewModel {
 		
 		this.passwordHistory = new SimpleListProperty<String>(FXCollections.observableArrayList(new ArrayList<String>()));
 		this.errorText = new SimpleStringProperty("");
+		this.inputValid = new SimpleBooleanProperty(true);
 
         Random randomNumberGenerator = new Random();
         this.generator = new PasswordGenerator(randomNumberGenerator.nextLong());
 	}
 
+	/** Return weather input is valid
+	 * 
+	 * @return the input valid property
+	 */
+	public BooleanProperty getInputValid() {
+		return this.inputValid;
+	}
+	
 	/** Return the minimum length property
 	 * 
 	 * @return the minimum length property
@@ -122,5 +132,30 @@ public class ViewModel {
     	
     	this.passwordHistory.add(password);
     }
+	
+	/** Validates the minimum length input and updates errorText and inputValid accordingly.
+	 * 
+	 * @param input the string to validate as a minimum length
+	 * @return true if valid, false otherwise
+	 */
+	public boolean validateMinimumLength(String input) {
+	    if (!input.matches("\\d+")) {
+	        this.errorText.set("Minimum length must be a positive whole number.");
+	        this.inputValid.set(false);
+	        return false;
+	    }
+
+	    int length = Integer.parseInt(input);
+	    if (length < 1) {
+	        this.errorText.set("Minimum length must be at least 1.");
+	        this.inputValid.set(false);
+	        return false;
+	    }
+
+	    this.errorText.set("");
+	    this.minimumLength.set(input);
+	    this.inputValid.set(true);
+	    return true;
+	}
 
 }

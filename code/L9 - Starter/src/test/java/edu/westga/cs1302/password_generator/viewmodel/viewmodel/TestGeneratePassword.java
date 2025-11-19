@@ -55,5 +55,7 @@ class TestGeneratePassword {
 		assertTrue(vm.getPasswordHistory().get(1).length() >= 2, "checking the password property has an appropriate number of characters");
 		assertEquals("", vm.getErrorText().getValue(), "checking the error text property");
 	}
+	
+	
 
 }
