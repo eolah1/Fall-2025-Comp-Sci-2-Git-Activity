@@ -1,12 +1,12 @@
 package edu.westga.cs1302.contact_manager.viewmodel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.westga.cs1302.contact_manager.model.Contact;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -22,6 +22,9 @@ public class MainWindowViewModel {
 	private StringProperty searchCriteria;
 	private ListProperty<Contact> contacts;
 	
+	private Map<String, Contact> contactName;
+	private Map<String, Contact> contactPhoneNumber;
+	
 	/** Initialize the MainWindowViewModel
 	 * 
 	 * @precondition none
@@ -33,6 +36,8 @@ public class MainWindowViewModel {
 		this.phoneNumber = new SimpleStringProperty("");
 		this.searchCriteria = new SimpleStringProperty("");
 		this.contacts = new SimpleListProperty<Contact>(FXCollections.observableList(new ArrayList<Contact>()));
+		this.contactName = new HashMap<>();
+		this.contactPhoneNumber = new HashMap<>();
 	}
 	
 	/** Return the name property used when adding a contact
@@ -75,7 +80,7 @@ public class MainWindowViewModel {
 	 * 
 	 * @return the list property containing all contacts added to the system
 	 */
-	public ListProperty getContacts() {
+	public ListProperty<Contact> getContacts() {
 		return this.contacts;
 	}
 	
@@ -87,7 +92,10 @@ public class MainWindowViewModel {
 	 * @throws IllegalArgumentException if either name or phone number are invalid (see Contact class)
 	 */
 	public void addContact() throws IllegalArgumentException {
-		this.contacts.add(new Contact(this.name.get(), this.phoneNumber.get()));
+		Contact newContact = new Contact(this.name.get(), this.phoneNumber.get());
+		this.contacts.add(newContact);
+		this.contactName.put(newContact.getName(), newContact);
+		this.contactPhoneNumber.put(newContact.getPhoneNumber(), newContact);
 	}
 	
 	/** Finds a contact with name or phone number matches provide search criteria
@@ -95,18 +103,25 @@ public class MainWindowViewModel {
 	 * @precondition none
 	 * @postcondition getResultContact().get() is set to the appropriate contact (if contact found) OR null (if no contact found)
 	 * 
-	 * @return A string representation of the contact found.
+	 * @return A string representation of the contact found or "No contact found." if none match.
 	 */
 	public String findContact() {
+		String criteria = this.searchCriteria.get();
+		
 		if (!Contact.checkName(this.searchCriteria.get()) && !Contact.checkPhoneNumber(this.searchCriteria.get())) {
 			throw new IllegalArgumentException("Search criteria is not a valid name or phone number");
 		}
-		for (Contact currContact : this.contacts.get()) {
-			if (currContact.getName().equals(this.searchCriteria.get()) || currContact.getPhoneNumber().equals(this.searchCriteria.get())) {
-				return currContact.toString();
-			}
+		
+		Contact found = this.contactName.get(criteria);
+		if (found == null) {
+			found = this.contactPhoneNumber.get(criteria);
 		}
-		return "No contact found.";
+		
+		if (found != null) {
+			return found.toString();
+		} else {
+			return "No contact found.";
+		}
 	}
 	
 }
