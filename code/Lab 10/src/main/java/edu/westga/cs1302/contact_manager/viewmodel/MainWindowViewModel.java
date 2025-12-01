@@ -20,8 +20,7 @@ public class MainWindowViewModel {
 	private StringProperty name;
 	private StringProperty phoneNumber;
 	private StringProperty searchCriteria;
-	private ListProperty<Contact> contacts;
-	
+	private ListProperty<Contact> contacts;	
 	private Map<String, Contact> contactName;
 	private Map<String, Contact> contactPhoneNumber;
 	
@@ -92,6 +91,17 @@ public class MainWindowViewModel {
 	 * @throws IllegalArgumentException if either name or phone number are invalid (see Contact class)
 	 */
 	public void addContact() throws IllegalArgumentException {
+		String newName = this.name.get();
+		String newPhone = this.phoneNumber.get();
+		
+		if (this.contactName.containsKey(newName)) {
+			throw new IllegalArgumentException("Contact name already exists");
+		}
+		
+		if (this.contactPhoneNumber.containsKey(newPhone)) {
+			throw new IllegalArgumentException("Contact phone number already exists");
+		}
+		
 		Contact newContact = new Contact(this.name.get(), this.phoneNumber.get());
 		this.contacts.add(newContact);
 		this.contactName.put(newContact.getName(), newContact);

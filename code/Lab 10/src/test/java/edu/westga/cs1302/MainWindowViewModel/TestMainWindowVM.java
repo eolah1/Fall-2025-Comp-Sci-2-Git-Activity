@@ -65,4 +65,53 @@ class TestMainWindowVM {
 
         assertEquals("No contact found.", result);
     }
+    
+    @Test
+    public void testAddUniqueContactSucceeds() {
+        MainWindowViewModel vm = new MainWindowViewModel();
+        vm.getName().set("Alice");
+        vm.getPhoneNumber().set("1234567");
+        vm.addContact();
+
+        assertEquals(1, vm.getContacts().size());
+        assertEquals("Alice", vm.getContacts().get(0).getName());
+        assertEquals("1234567", vm.getContacts().get(0).getPhoneNumber());
+    }
+
+    @Test
+    public void testAddContactWithDuplicateNameThrowsException() {
+        MainWindowViewModel vm = new MainWindowViewModel();
+        vm.getName().set("Bob");
+        vm.getPhoneNumber().set("765-4321");
+        vm.addContact();
+
+        vm.getName().set("Bob");
+        vm.getPhoneNumber().set("5555555");
+
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> vm.addContact());
+        assertEquals("Contact name already exists", ex.getMessage());
+    }
+
+    @Test
+    public void testAddContactWithDuplicatePhoneThrowsException() {
+        MainWindowViewModel vm = new MainWindowViewModel();
+        vm.getName().set("Carol");
+        vm.getPhoneNumber().set("123-4567");
+        vm.addContact();
+
+        vm.getName().set("Dave");
+        vm.getPhoneNumber().set("123-4567");
+
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> vm.addContact());
+        assertEquals("Contact phone number already exists", ex.getMessage());
+    }
+
+    @Test
+    public void testAddContactWithInvalidPhoneThrowsException() {
+        MainWindowViewModel vm = new MainWindowViewModel();
+        vm.getName().set("Grace");
+        vm.getPhoneNumber().set("1234567890");
+
+        assertThrows(IllegalArgumentException.class, () -> vm.addContact());
+    }
 }
