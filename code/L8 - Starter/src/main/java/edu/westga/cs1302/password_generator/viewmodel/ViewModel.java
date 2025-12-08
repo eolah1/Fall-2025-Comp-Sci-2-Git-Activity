@@ -2,7 +2,7 @@ package edu.westga.cs1302.password_generator.viewmodel;
 
 import java.util.Random;
 
-import edu.westga.cs1302.password_generator.model.PasswordGenerator;
+import edu.westga.cs1302.password_generator.model.Collection;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -24,7 +24,7 @@ public class ViewModel {
 	private StringProperty password;
 	private StringProperty errorText;
 	
-    private PasswordGenerator generator;
+    private Collection generator;
     
     private ObservableList<String> passwordLog = FXCollections.observableArrayList();
 	
@@ -40,7 +40,7 @@ public class ViewModel {
 		this.errorText = new SimpleStringProperty("");
 
         Random randomNumberGenerator = new Random();
-        this.generator = new PasswordGenerator(randomNumberGenerator.nextLong());
+        this.generator = new Collection(randomNumberGenerator.nextLong());
 	}
 
 	/** Return the minimum length property
