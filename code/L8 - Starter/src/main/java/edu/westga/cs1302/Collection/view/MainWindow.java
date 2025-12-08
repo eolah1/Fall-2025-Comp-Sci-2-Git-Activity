@@ -32,6 +32,9 @@ public class MainWindow {
         this.collectionName.textProperty().bindBidirectional(this.vm.getName());
         this.displayCollections.itemsProperty().bind(this.vm.getDisplayCollections());
         this.vm.getSelectedCollections().bind(this.displayCollections.getSelectionModel().selectedItemProperty());
+        this.addCollection.disableProperty().bind(
+        		this.vm.getName().isEmpty()
+        );
     }
     
     @FXML
