@@ -1,4 +1,4 @@
-package edu.westga.cs1302.password_generator;
+package edu.westga.cs1302.Collection;
 
 import java.io.IOException;
 
