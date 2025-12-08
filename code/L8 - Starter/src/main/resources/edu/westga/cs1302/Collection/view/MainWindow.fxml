@@ -19,6 +19,6 @@
             </ContextMenu>
          </contextMenu></ListView>
       <Button fx:id="addCollection" layoutX="117.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleAddCollection" text="Add Collection" />
-      <TextField fx:id="collectionName" layoutX="91.0" layoutY="114.0" />
+      <TextField fx:id="collectionName" layoutX="91.0" layoutY="114.0" promptText="Enter Collection Name" />
    </children>
 </AnchorPane>
