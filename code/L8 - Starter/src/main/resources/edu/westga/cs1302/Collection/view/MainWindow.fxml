@@ -7,18 +7,29 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="366.0" minWidth="215.0" prefHeight="494.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.Collection.view.MainWindow">
+<AnchorPane minHeight="366.0" minWidth="215.0" prefHeight="494.0" prefWidth="367.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.Collection.view.MainWindow">
    <children>
-      <Button fx:id="removeCollection" layoutX="107.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleRemoveCollection" text="Remove Collection" />
-      <ListView fx:id="displayCollections" layoutX="68.0" layoutY="276.0" prefHeight="174.0" prefWidth="194.0">
+      <Button fx:id="removeCollection" layoutX="232.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleRemoveCollection" text="Remove Collection" />
+      <ListView fx:id="displayCollections" layoutX="14.0" layoutY="46.0" prefHeight="174.0" prefWidth="194.0">
          <contextMenu>
             <ContextMenu>
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#removeFromContext" text="Remove" />
+                <MenuItem mnemonicParsing="false" onAction="#removeFromContext" text="Remove Collection" />
               </items>
             </ContextMenu>
          </contextMenu></ListView>
-      <Button fx:id="addCollection" layoutX="117.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleAddCollection" text="Add Collection" />
-      <TextField fx:id="collectionName" layoutX="91.0" layoutY="114.0" promptText="Enter Collection Name" />
+      <Button fx:id="addCollection" layoutX="242.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddCollection" text="Add Collection" />
+      <TextField fx:id="collectionName" layoutX="14.0" layoutY="14.0" promptText="Enter Collection Name" />
+      <ListView layoutX="14.0" layoutY="273.0" prefHeight="200.0" prefWidth="200.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#removeComicFromContext" text="Remove Comic" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </ListView>
+      <Button fx:id="addComic" layoutX="252.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleAddComic" text="Add Comic" />
+      <Button fx:id="removeComic" layoutX="242.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleRemoveComic" text="Remove Comic" />
    </children>
 </AnchorPane>

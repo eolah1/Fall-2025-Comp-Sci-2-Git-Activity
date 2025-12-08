@@ -13,16 +13,20 @@ import javafx.scene.control.ListView;
  * @author CS 1302
  * @version Fall 2025
  */
-public class MainWindow {
+public class MainWindow{
 
 	@FXML
     private Button addCollection;
     @FXML
+    private Button addComic;
+    @FXML
     private TextField collectionName;
     @FXML
-    private ListView<Collection> displayCollections;
+    private ListView<?> displayCollections;
     @FXML
     private Button removeCollection;
+    @FXML
+    private Button removeComic;
 
     private ViewModel vm;
     
@@ -50,5 +54,20 @@ public class MainWindow {
     @FXML
     void removeFromContext(ActionEvent event) {
         this.vm.removeCollection();
+    }
+    
+    @FXML
+    void handleRemoveComic(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleAddComic(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void removeComicFromContext(ActionEvent event) {
+
     }
 }

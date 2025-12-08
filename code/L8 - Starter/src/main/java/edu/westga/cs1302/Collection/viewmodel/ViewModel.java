@@ -36,7 +36,7 @@ public class ViewModel {
      * @return the name property
      */
     public StringProperty getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -45,7 +45,7 @@ public class ViewModel {
      * @return the displayCollections property
      */
     public ListProperty<Collection> getDisplayCollections() {
-        return displayCollections;
+        return this.displayCollections;
     }
 
     /**
@@ -54,7 +54,7 @@ public class ViewModel {
      * @return the selectedCollection property
      */
     public ObjectProperty<Collection> getSelectedCollections() {
-        return selectedCollection;
+        return this.selectedCollection;
     }
 
     /**
@@ -62,12 +62,12 @@ public class ViewModel {
      * and not already in the list.
      */
     public void addCollection() {
-        String newName = name.get();
+        String newName = this.name.get();
         if (newName != null && !newName.isEmpty()) {
             Collection item = new Collection(newName);
-            if (!displayCollections.contains(item)) {
-                displayCollections.add(item);
-                name.set("");
+            if (!this.displayCollections.contains(item)) {
+                this.displayCollections.add(item);
+                this.name.set("");
             }
         }
     }
