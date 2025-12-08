@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="366.0" minWidth="215.0" prefHeight="494.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.password_generator.view.MainWindow">
+<AnchorPane minHeight="366.0" minWidth="215.0" prefHeight="494.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.Collection.view.MainWindow">
    <children>
       <Button fx:id="removeCollection" layoutX="107.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleRemoveCollection" text="Remove Collection" />
       <ListView fx:id="displayCollections" layoutX="68.0" layoutY="276.0" prefHeight="174.0" prefWidth="194.0">
