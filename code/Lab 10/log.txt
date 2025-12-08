@@ -1,0 +1,501 @@
+commit 094beb00bffc3db0f5be784bbebce8c60bc0e5ea
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 1 15:25:18 2025 -0500
+
+    Prevents duplicate contacts
+    
+    Updated the system to not allow duplicate names or phone numbers.
+    Implemented appropriate tests.
+
+commit 43d7b8141c8d0ab66db57a638794a73173216f9e
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 1 14:57:06 2025 -0500
+
+    Lookup contact by system name or phone number
+    
+    Updated findContact method to not loop
+    Implemented tests for MainWindowViewModel
+
+commit cea4bce2a0abecac1dad5aff53cd937694d54a62
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 1 14:21:02 2025 -0500
+
+    Implemented Maps and updated addContact
+    
+    When adding a contact, the contact is inserted in the list and maps
+
+commit 8b8bdbb7d9955a5ab440a6488bdb506fdb697a97
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 19 13:12:30 2025 -0500
+
+    Enable/Disbale Generate Password
+    
+    Updated UI to enable/disable generate password button based on input.
+
+commit f1f7fa107431bf5d7a1de75df7d060663070b420
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 19 12:32:58 2025 -0500
+
+    Added Menu bar with Save, ABout, Close Menu Items
+    
+    Save opens a FileChooser Dialog allowing user to specify a .txt file.
+    About displays a pop up that describes the purpose of the project.
+    Close exits the application.
+
+commit 779d4a2790f432506e1395e0015b102335dcb6aa
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 12 14:58:43 2025 -0500
+
+    Stores List of Passwords
+    
+    Updated UI to have a ListView instead of TextArea.
+    Stores passwords and displays all passwords that have been generated.
+
+commit 999dfa235f0772e6afc83c07e255d61a5651530f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 12 14:19:33 2025 -0500
+
+    Implemented Input Validation
+    
+    Added cahnge lsiteners to validate input fields.
+    Implemented appropriate tests.
+
+commit 04986f5ef7cdb071cbb2da32f1f442a2b8d10c1b
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 5 14:22:11 2025 -0500
+
+    Binded View to ViewModel
+    
+    Implemented databinding and calls in the MainWindow class to utilize
+    the ViewModel class.
+    Added appropriate junit tests for binding implementation.
+
+commit c475ec7799a574738abd6aa6efb4941ea768f5da
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 5 13:16:57 2025 -0500
+
+    Implemented Junit tests and getters for properties
+    
+    Added Junit tests testing constructor initialization and when
+    PasswordGenerator is null.
+    Implmented getters for each of the properties in the ViewModel.
+
+commit 24ca80a1703773a2ee35a919b51389adf4b20843
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 5 12:59:17 2025 -0500
+
+    Implemented ViewModel
+    
+    Added appropriote property objects
+    
+    Added appropriate methods for behavior.
+
+commit eecdb1473e592771f94bbd3ab8a10ce08f17e5e7
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 29 13:49:27 2025 -0400
+
+    Connect UI to Business Logic for Adding Tasks
+    
+    Updated the MainWindow class to implement the method for displaying
+    a subtask.
+
+commit 66136a32860d718b8116cd8a771bac390155ced3
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 29 13:21:48 2025 -0400
+
+    UI for Adding Tasks
+    
+    Updated MainWindow to support displaying a selected Task from the subtask
+    list.
+
+commit 55241085fed4cd69c165ac8bf3760f149ed99340
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 29 13:02:25 2025 -0400
+
+    Connect UI to Business Logic for SubTasks
+    
+    Updated the implementation of the MainWindow to support adding subtasks.
+    Updated the implementation of MainWindow to support displaying list of
+    subtaks when a Task is selected.
+
+commit be37c23eb06a9ebdb7d0e11793f924aa7d68fea4
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 29 12:33:11 2025 -0400
+
+    Business Logic for SubTasks
+    
+    Impemented a addTasks method that accepts Task as an input and returns
+    a new ContainerTask.
+    Implemented a getSubTasks method that accepts no input and returns an
+    empty list of Task objects.
+
+commit 8b8bf1fe2168af45fcf52e99aa8145ed6aa83a5c
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Oct 28 15:17:33 2025 -0400
+
+    Implemented Test Cases for Name Comparators
+    
+    Added Tests for NameDescending and NameAscending.
+
+commit d15049d1fd4b6e3bd825e289de579ee2f1a1d5cc
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Oct 28 14:55:36 2025 -0400
+
+    Connected UI to Business Logic for Sorting Based on Name
+    
+    Initialized NameAscending and NameDescending in MainWindow to provide
+    the new comparators as options when selecting a sort ordering.
+
+commit 596ece84364b8f3ba2dd21dfc0280544c26635a4
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Oct 28 14:49:31 2025 -0400
+
+    Business Logic for Sorting Based on Name
+    
+    Implemented new comparators to compare by name with Ascending and
+    Descending options.
+    Updated current comparators to indicate they sort by piority.
+
+commit 55cfd8fad798bfb29fc408bcab49dc508a255d3a
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Oct 28 14:32:00 2025 -0400
+
+    Implemented test cases for addTask
+    
+    Tested when ascending and descending are selected that when a tasks
+    is added, it is sorted upon adding the task.
+    
+    Tested duplicate additions and adding to an empty list.
+
+commit ddb26ae40b093ab6ed1c38a344652da06dcbf45a
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Oct 28 14:07:35 2025 -0400
+
+    Updated MainWindow to re-sort when adding tasks
+    
+    Updates addTask method to immediately sort tasks based on the
+    comparator that was selected.
+    Ensures new tasks appear in correct order without having to re-sort.
+
+commit d1fbb5ceac106ce2952ece7438e23a809160fa6f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 15 12:21:02 2025 -0400
+
+    Implemented functionality for sorting set of tasks
+    
+    Added Ascending and Descending to the comboBox
+    Implemented the sortTasks method
+    Improved logic and implemented Junit test cases.
+
+commit 57f72b7f8d0dbe21c43d743662344776f5ff9d7b
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 15 11:56:11 2025 -0400
+
+    Implemented a new Descending Comparator
+    
+    Sorts tasks based on priority (HIGH, MEDIUM, LOW).
+
+commit 5c49671a9da8cee868f494f2d9ba3a27c58854a5
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 15 11:50:50 2025 -0400
+
+    Implemented a new Ascending Comparator
+    
+    Sorts Tasks based on priority (LOW, MEDIUM, HIGH).
+
+commit 4fca9d2deedeaeb0d7c8a78111ad96b53069108d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 1 11:59:19 2025 -0400
+
+    Implemented test cases for load and save student data
+    
+    tested for loading single and multiple students
+    tested for missing grades or invalid intgers for grades.
+    tested if empty lines were ignored and empty File returns an empty Array.
+
+commit f3fb1b554c28212f1d47c335e5f60ebeb34ac321
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 1 11:47:23 2025 -0400
+
+    Adjusted loadStudentData to properly load Student data
+    
+    Implemented preconditions that skip empty lines
+    Added .trim methods to cut out excess white space.
+
+commit fe5b0dcca076bcbbf0bcab9cf2806f36089fef80
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Oct 1 11:12:03 2025 -0400
+
+    Implemented methods from lecture
+    
+    Updated the method to go through student data using comma seperation.
+
+commit 87bdb7d5ba89bf7cfa2764f8e43cf0c1f9064541
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Sun Sep 28 18:13:39 2025 -0400
+
+    Connect Business Logic and UI for Count Task Priority
+    
+    Implemented a method in the Utility class that determines the number
+    of tasks for each priority along with a description in the label
+    associated with the priority.
+
+commit 89e002f324d75e377afe350ad3e18a17cec7e8f8
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 16:06:58 2025 -0400
+
+    Business Logic for Counting Number of Task Priority
+    
+    Added a static method that accepts a priority and list of tasks
+    then returns the number of tasks with that priority
+
+commit 8de418f5b4fadc33f5e9a330e72df67c2ec7849f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 15:37:47 2025 -0400
+
+    Implementing UI for Priority Count
+    
+    Implemented lable for each priority level and a button for displaying
+    the number of tasks for each priority
+
+commit 859ac11e1f42a9fadedac288ea0faf8090bf0d37
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 15:15:28 2025 -0400
+
+    Implemented Junit Tests
+    
+    Implemented tests for MainWindow and Task classes
+
+commit 62bbec91f0c6b5aa7b0e2816a88b7e647910df6d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 14:16:20 2025 -0400
+
+    UI for Removing Task from the List
+    
+    Implented a button for removing selected tasks
+
+commit cac1fd140e17f93f803232ccd5834390f60a427f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 13:59:07 2025 -0400
+
+    Connect Business Logic and UI for Updating Discription
+    
+    Implemented method that updates listView when the selected tasks
+    description is updated and the Edit Description button is pressed
+
+commit 074c5fed0a7fae0533b05e9542ca540b1fc5549e
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 13:24:57 2025 -0400
+
+    Business Logic for Updating Description of Task in the List
+    
+    Updated the Task class to support updating task description
+
+commit bd2845b120d6e4844f25e82971ccf4e938d39f05
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 13:13:57 2025 -0400
+
+    Implementing UI
+    
+    TestArea is now editable
+    Added a button for updating description
+
+commit c6af5af5f3a338796284db6cf4a9e59b8a2d63f9
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 12:34:20 2025 -0400
+
+    Connect UI to Business Logic for Adding Task
+    
+    Selected task description and priority are displayed in the
+    read-only UI compenents after selecting a task
+
+commit 678a997adf09c49a600c6ace3d7c31a31b5b599d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 12:03:19 2025 -0400
+
+    UI for Adding Tasks
+    
+    Added UI compenents for users to see selected task description
+    and selected task priority.
+
+commit aaa2aed9313a7abb5b9aa5d14e70b0f56dd1c7ef
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 11:51:42 2025 -0400
+
+    Connect UI to Business Logic for Adding Task
+    
+    Added task creation logic
+    Updated Alert error box logic
+
+commit 7abf2ea5766a74a919c86a75e3ddaa15aaa6ec2f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Fri Sep 26 11:34:07 2025 -0400
+
+    Created variable to store Alert diaglogs
+    
+    Cleaned up alert creation by assigning Alert dialogs to a variable
+
+commit 786db580fe469fb1dd41210a0b4c51d87920d740
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Sep 23 17:44:34 2025 -0400
+
+    Created Junit test for toString
+    
+    Verifies Task creation and toString behavior
+
+commit fe649c9ddb2afd2b4d35a0ea1a2477db9d918ecc
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Sep 23 17:33:04 2025 -0400
+
+    Business Logic for Storing a Task
+    
+    Added Task class that stores a single Task(name, description, priority)
+    Implemented getters for each field
+    Added a toString that returns the name of the task
+
+commit ff961b61667a7a1471962ad8b792ad31486a331c
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Sep 23 16:56:41 2025 -0400
+
+    Completed UI for Adding Tasks
+    
+    Added method to allow user to select a task and view it
+    Enabled adding tasks to ListView
+
+commit cfdaa9afaeafba6f27d21652864d848cc7212f4c
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Sep 23 15:15:25 2025 -0400
+
+    Corrected .fxml errors
+    
+    Updated references in MainWindow.fxml to resolve syntax errors.
+
+commit d9a9d9dc5b27311a4886d052a90e505b6167e1f1
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Sep 23 14:37:00 2025 -0400
+
+    Implemented UI components for adding tasks
+    
+    Added lables, textFields, textArea, comboBox, button, and listView.
+
+commit 449457fcd698df29c5f31d3580f49ea1c219a628
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 14:48:20 2025 -0400
+
+    Updated calculateSubtotal and tests for BillCalculator
+    
+    Implemented tests that checked the methods for tax, tip, and subtotal
+    Updated calculate subTotal to check null
+
+commit 5f2dd365510712c6cf45a36002602152a368da9a
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 14:32:40 2025 -0400
+
+    Updated getText method to use new methods
+    
+    Delegates subtotal, tax, tip, and total calculations to BillCalcultor
+    class.
+
+commit 41af3039f94d561c22b2424daa101f61bcaf32a5
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 14:13:28 2025 -0400
+
+    Added BillCalculator class
+    
+    Implemented methods to calculate subtotal, tax, tips, and total
+    Implemented checkstyle fixes
+
+commit db10268a6c632feacde67d235bc427b1e948910d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 11 12:09:10 2025 -0400
+
+    Updated BillItem feilds to be final
+    
+    This ensures the field cannot be changed
+
+commit 90661e24ec4ae82be7787c2ad3dfc602b25c5419
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 14:21:47 2025 -0400
+
+    Applied CheckStyle fixes
+    
+    Applied a JavaDoc comment for addItem()
+
+commit f28f4f626f936ad4010944d344e0b0101a3df79b
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 14:01:03 2025 -0400
+
+    Implemented addItem() method
+    
+    Updates bill with new items and implements into textArea
+
+commit 3c9f3cf324d8361f377a183c7ea086575939bee3
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 12:42:04 2025 -0400
+
+    Designed a GUI
+    
+    Implemented text fields, text areas, and buttons
+
+commit f52fca0f9cf0d9522ed3f4616ff0a2fb0de67f4f
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Thu Sep 4 10:47:44 2025 -0400
+
+    Setting up JavaFX Lab3
+    
+    Added bill model classes to javafx sample project
+    Did not implement test cases
+
+commit e1efa29fa85158bebf0a97a6ba563f741ce722b0
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 17:25:40 2025 -0400
+
+    Fixed checkstyle warnings
+    Added missing @param tag
+    Fixed spacing issues
+    And reformatted code.
+
+commit b8f10b3427af2ba999544e23ee9ab5ecd933861d
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 16:33:24 2025 -0400
+
+    Added Junit tests for getText()
+    Created tests to verify the string output of the method.
+    Covered cases for empty bills and bills with multiple items.
+
+commit 7a5c35a23a91db11497e0ad292b3481dc4ab4fb6
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 16:12:34 2025 -0400
+
+    Added Junit tests for addItem()
+    Tested when item was null and when item was a valid value
+
+commit 7af2c2008d23786ec05060caac17385b18a72a08
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Sep 3 15:28:31 2025 -0400
+
+    Add tests for constructor
+    Wrote Junit test for BillItem constructor.
+    Covers edge cases and when name is null.
+
+commit 111ba7740473728ea12bc2dbf8949feb444451d5
+Author: Evan Olah <eolah1@my.westga.edu>
+Date:   Thu Aug 21 10:28:40 2025 -0400
+
+    Adding BAse Project
+    1) Adding Eclipse project to /code/
+
+commit 6ed59def44a059ade4c645178aa2a34d2c6caea0
+Author: Evan Olah <eolah1@my.westga.edu>
+Date:   Thu Aug 21 10:06:26 2025 -0400
+
+    Adding Base Project Structure
+    >
+    > 1) Creating the README for the Project (/README.md)
+    > 2) Creating the code directory for the project (/code/)
+
+commit 2b40d078e5faa95cf6d825b4fabcee4819d3ffe7
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Aug 19 10:04:41 2025 -0400
+
+    Initial commit
