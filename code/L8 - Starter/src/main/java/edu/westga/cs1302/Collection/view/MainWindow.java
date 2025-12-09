@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -24,6 +25,10 @@ public class MainWindow {
     private Button addComic;
     @FXML
     private TextField collectionName;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextField issueField;
     @FXML
     private ListView<Collection> displayCollections;
     @FXML
@@ -94,5 +99,37 @@ public class MainWindow {
     @FXML
     void removeComicFromContext(ActionEvent event) {
         this.vm.removeComic();
+    }
+    
+    @FXML
+    void handleFindComic(ActionEvent event) {
+    	String title = this.titleField.getText().trim();
+        String issueText = this.issueField.getText().trim();
+
+        int issue;
+        try {
+            issue = Integer.parseInt(issueText);
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Issue number must be numeric");
+            alert.setContentText("You entered: " + issueText);
+            alert.showAndWait();
+            return;
+        }
+
+        Comic foundComic = this.vm.searchComic(title, issue);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (foundComic != null) {
+            alert.setTitle("Comic Found");
+            alert.setHeaderText("Search Result");
+            alert.setContentText(foundComic.toString());
+        } else {
+            alert.setTitle("Comic Not Found");
+            alert.setHeaderText("Search Result");
+            alert.setContentText("No comic with title '" + title + "' and issue #" + issue + " was found.");
+        }
+        alert.showAndWait();
     }
 }

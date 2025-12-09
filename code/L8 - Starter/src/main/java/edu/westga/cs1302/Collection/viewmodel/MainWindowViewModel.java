@@ -1,5 +1,8 @@
 package edu.westga.cs1302.Collection.viewmodel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
 import javafx.beans.property.ListProperty;
@@ -20,6 +23,7 @@ public class MainWindowViewModel {
     private ObjectProperty<Comic> selectedComic;
     private StringProperty comicName;
     private ObjectProperty<Integer> issueNum;
+    private Map<String, Comic> comicMap = new HashMap<>();
 
     public MainWindowViewModel() {
         this.name = new SimpleStringProperty("");
@@ -105,6 +109,9 @@ public class MainWindowViewModel {
         Comic newComic = new Comic(title.trim(), issue);
         if (!selected.getComics().contains(newComic)) {
             selected.addComic(newComic);
+            
+            String key = newComic.getComicName().toLowerCase() + "#" + newComic.getIssueNum();
+            this.comicMap.put(key, newComic);
         }
 
         this.displayComics.set(selected.getComics());
@@ -122,4 +129,20 @@ public class MainWindowViewModel {
             this.displayComics.set(selected.getComics());
         }
     }
+    public void addComic(Comic comic) {
+        if (comic != null) {
+            String key = comic.getComicName().toLowerCase() + "#" + comic.getIssueNum();
+            this.comicMap.put(key, comic);
+            this.displayComics.add(comic);
+        }
+    }
+ 
+	public Comic searchComic(String title, int issue) {
+		if (title == null) {
+			return null;
+		}
+		
+		String key = title.toLowerCase() + "#" + issue;
+        return this.comicMap.get(key);
+	}
 }

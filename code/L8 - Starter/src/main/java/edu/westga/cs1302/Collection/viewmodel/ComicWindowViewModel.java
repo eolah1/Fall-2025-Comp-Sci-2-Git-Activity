@@ -1,5 +1,8 @@
 package edu.westga.cs1302.Collection.viewmodel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
 import javafx.beans.property.IntegerProperty;
