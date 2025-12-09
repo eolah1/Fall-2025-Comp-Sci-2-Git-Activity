@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
-import edu.westga.cs1302.Collection.viewmodel.ComicWindowViewModel;
 import edu.westga.cs1302.Collection.viewmodel.MainWindowViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,20 +34,17 @@ public class MainWindow {
     private ListView<Comic> displayComics;
 
     public MainWindowViewModel vm;
-    public ComicWindowViewModel cvm;
 
     @FXML
     public void initialize() {
         this.vm = new MainWindowViewModel();
-        this.cvm = new ComicWindowViewModel();
 
         this.collectionName.textProperty().bindBidirectional(this.vm.getName());
         this.displayCollections.itemsProperty().bind(this.vm.getDisplayCollections());
         this.vm.getSelectedCollections().bind(this.displayCollections.getSelectionModel().selectedItemProperty());
 
         this.displayComics.itemsProperty().bind(this.vm.getDisplayComics());
-        this.cvm.getSelectedComic().bind(this.displayComics.getSelectionModel().selectedItemProperty());
-        this.cvm.getSelectedCollection().bind(this.vm.getSelectedCollections());
+        this.vm.getSelectedComic().bind(this.displayComics.getSelectionModel().selectedItemProperty());
 
         this.addCollection.disableProperty().bind(this.vm.getName().isEmpty());
     }

@@ -23,15 +23,13 @@ public class ComicWindow {
     public void setViewModel(MainWindowViewModel vm) {
         this.vm = vm;
 
-        // Bind comic name field
         this.comicName.textProperty().bindBidirectional(this.vm.getComicName());
 
-        // Parse issue number safely into the IntegerProperty
         this.issueNumber.textProperty().addListener((obs, oldVal, newVal) -> {
             try {
-                int val = (newVal == null || newVal.isBlank()) ? 0 : Integer.parseInt(newVal.trim());
+                int val = (newVal == null || newVal.isBlank()) ? 0 : Integer.parseInt(newVal);
                 this.vm.getIssueNum().set(val);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException error) {
                 this.vm.getIssueNum().set(0);
             }
         });
