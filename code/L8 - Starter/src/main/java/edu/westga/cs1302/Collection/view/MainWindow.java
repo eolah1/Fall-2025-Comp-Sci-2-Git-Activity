@@ -36,6 +36,8 @@ public class MainWindow {
     @FXML
     private Button removeComic;
     @FXML
+    private Button findComic;
+    @FXML
     private ListView<Comic> displayComics;
 
     public MainWindowViewModel vm;
@@ -52,6 +54,19 @@ public class MainWindow {
         this.vm.getSelectedComic().bind(this.displayComics.getSelectionModel().selectedItemProperty());
 
         this.addCollection.disableProperty().bind(this.vm.getName().isEmpty());
+        
+        this.titleField.textProperty().bindBidirectional(this.vm.getComicName());
+        this.issueField.textProperty().addListener((obs, oldVal, newVal) -> {
+            try {
+                this.vm.getIssueNum().set(Integer.parseInt(newVal));
+            } catch (NumberFormatException e) {
+                this.vm.getIssueNum().set(0);
+            }
+        });
+        this.findComic.disableProperty().bind(
+                this.vm.getComicName().isEmpty()
+                    .or(this.vm.getIssueNum().isEqualTo(0))
+            );
     }
 
     @FXML
@@ -109,7 +124,15 @@ public class MainWindow {
         int issue;
         try {
             issue = Integer.parseInt(issueText);
-        } catch (NumberFormatException e) {
+            if (issue < 0) {
+            	Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText("Issue number must be positive");
+                alert.setContentText("Please enter a valid issue number.");
+                alert.showAndWait();
+                return;
+            }
+        } catch (NumberFormatException error) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Input");
             alert.setHeaderText("Issue number must be numeric");
