@@ -17,6 +17,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
 
+/**
+ * Main window controller for managing comic collections and comics.
+ */
 public class MainWindow {
 
     @FXML
@@ -42,6 +45,9 @@ public class MainWindow {
 
     public MainWindowViewModel vm;
 
+    /**
+     * Initializes bindings between the view and the ViewModel.
+     */
     @FXML
     public void initialize() {
         this.vm = new MainWindowViewModel();
@@ -59,7 +65,7 @@ public class MainWindow {
         this.issueField.textProperty().addListener((obs, oldVal, newVal) -> {
             try {
                 this.vm.getIssueNum().set(Integer.parseInt(newVal));
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException error) {
                 this.vm.getIssueNum().set(0);
             }
         });
@@ -69,35 +75,56 @@ public class MainWindow {
             );
     }
 
+    /**
+     * Handles adding a new collection.
+     * @param event the action event
+     */
     @FXML
     void handleAddCollection(ActionEvent event) {
         this.vm.addCollection();
     }
 
+    /**
+     * Handles removing the selected collection.
+     * @param event the action event
+     */
     @FXML
     void handleRemoveCollection(ActionEvent event) {
         this.vm.removeCollection();
     }
 
+    /**
+     * Removes a collection from context menu.
+     * @param event the action event
+     */
     @FXML
     void removeFromContext(ActionEvent event) {
         this.vm.removeCollection();
     }
 
+    /**
+     * Handles removing the selected comic.
+     * @param event the action event
+     */
     @FXML
     void handleRemoveComic(ActionEvent event) {
         this.vm.removeComic();
     }
 
+    /**
+     * Opens the comic window to add a new comic.
+     * @param event the action event
+     * @throws IOException if the FXML cannot be loaded
+     */
     @FXML
     void handleAddComic(ActionEvent event) throws IOException {
-    	if (this.vm.getSelectedCollections().get() == null) {
+        if (this.vm.getSelectedCollections().get() == null) {
             return;
         }
 
-    	FXMLLoader loader = new FXMLLoader(
-    		    getClass().getResource("/edu/westga/cs1302/Collection/view/ComicWindow.fxml")
-    		);
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/edu/westga/cs1302/Collection/view/ComicWindow.fxml")
+        );
         Parent root = loader.load();
 
         ComicWindow controller = loader.getController();
@@ -108,24 +135,31 @@ public class MainWindow {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL); 
         stage.showAndWait();
-    	
     }
 
+    /**
+     * Removes a comic from context menu.
+     * @param event the action event
+     */
     @FXML
     void removeComicFromContext(ActionEvent event) {
         this.vm.removeComic();
     }
     
+    /**
+     * Handles searching for a comic by title and issue number.
+     * @param event the action event
+     */
     @FXML
     void handleFindComic(ActionEvent event) {
-    	String title = this.titleField.getText().trim();
+        String title = this.titleField.getText().trim();
         String issueText = this.issueField.getText().trim();
 
         int issue;
         try {
             issue = Integer.parseInt(issueText);
             if (issue < 0) {
-            	Alert alert = new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Invalid Input");
                 alert.setHeaderText("Issue number must be positive");
                 alert.setContentText("Please enter a valid issue number.");

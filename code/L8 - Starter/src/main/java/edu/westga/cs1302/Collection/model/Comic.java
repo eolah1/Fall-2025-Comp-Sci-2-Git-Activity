@@ -2,6 +2,9 @@ package edu.westga.cs1302.Collection.model;
 
 /**
  * Represents a comic with a title and issue number.
+ * 
+ * @author CS 1302
+ * @version Fall 2025
  */
 public class Comic {
 
