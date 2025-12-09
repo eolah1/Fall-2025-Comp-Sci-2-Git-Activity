@@ -1,5 +1,6 @@
 package edu.westga.cs1302.Collection.model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -20,7 +21,7 @@ public class Collection {
      */
 	public Collection(String name) {
 		this.name = name;
-		this.comics = comics;
+		this.comics = FXCollections.observableArrayList();
 	}
 	
 	public ObservableList<Comic> getComics() {
@@ -42,4 +43,14 @@ public class Collection {
 	public String toString() {
 		return this.name;
 	}
+	
+	public void addComic(Comic comic) {
+        if (comic != null && !this.comics.contains(comic)) {
+            this.comics.add(comic);
+        }
+    }
+	
+	public void removeComic(Comic comic) {
+        this.comics.remove(comic);
+    }
 }

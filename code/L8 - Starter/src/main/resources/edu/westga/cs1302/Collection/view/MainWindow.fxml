@@ -20,7 +20,7 @@
          </contextMenu></ListView>
       <Button fx:id="addCollection" layoutX="242.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddCollection" text="Add Collection" />
       <TextField fx:id="collectionName" layoutX="14.0" layoutY="14.0" promptText="Enter Collection Name" />
-      <ListView layoutX="14.0" layoutY="273.0" prefHeight="200.0" prefWidth="200.0">
+      <ListView fx:id="displayComics" layoutX="14.0" layoutY="273.0" prefHeight="200.0" prefWidth="200.0">
          <contextMenu>
             <ContextMenu>
               <items>
