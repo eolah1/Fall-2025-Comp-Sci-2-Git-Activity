@@ -1,6 +1,7 @@
 package edu.westga.cs1302.Collection.view;
 
 import edu.westga.cs1302.Collection.viewmodel.MainWindowViewModel;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,8 +35,9 @@ public class ComicWindow {
             }
         });
 
+        BooleanBinding invalidIssue = this.vm.getIssueNum().isEqualTo(0);
         this.confirmAdd.disableProperty().bind(
-            this.vm.getComicName().isEmpty()
+            this.vm.getComicName().isEmpty().or(invalidIssue)
         );
     }
 
