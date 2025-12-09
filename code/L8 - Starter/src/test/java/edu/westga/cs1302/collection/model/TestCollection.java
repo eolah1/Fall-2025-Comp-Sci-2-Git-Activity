@@ -7,82 +7,92 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 class TestCollection {
 
 	@Test
-    public void testConstructorStoresNameAndInitializesComics() {
-        Collection coll = new Collection("Favorites");
-        assertEquals("Favorites", coll.getName());
-        assertNotNull(coll.getComics());
-        assertTrue(coll.getComics().isEmpty());
-    }
+	public void testConstructorInitializesWithGivenName() {
+	    Collection collection = new Collection("Marvel");
+	    assertEquals("Marvel", collection.getName());
+	}
 
-    @Test
-    public void testSetNameUpdatesName() {
-        Collection coll = new Collection("Old Name");
-        coll.setName("New Name");
-        assertEquals("New Name", coll.getName());
-    }
+	@Test
+	public void testConstructorInitializesWithEmptyComicsList() {
+	    Collection collection = new Collection("Marvel");
+	    assertTrue(collection.getComics().isEmpty());
+	}
 
-    @Test
-    public void testSetComicsReplacesList() {
-        Collection coll = new Collection("Favorites");
-        Comic comic = new Comic("Batman", 1);
-        var newList = FXCollections.<Comic>observableArrayList(comic);
-        coll.setComics(newList);
-        assertEquals(1, coll.getComics().size());
-        assertTrue(coll.getComics().contains(comic));
-    }
+	@Test
+	public void testSetNameUpdatesCollectionName() {
+	    Collection collection = new Collection("Marvel");
+	    collection.setName("DC");
+	    assertEquals("DC", collection.getName());
+	}
 
-    @Test
-    public void testAddComicAddsComic() {
-        Collection coll = new Collection("Favorites");
-        Comic comic = new Comic("Batman", 1);
-        coll.addComic(comic);
-        assertEquals(1, coll.getComics().size());
-        assertTrue(coll.getComics().contains(comic));
-    }
+	@Test
+	public void testSetComicsReplacesComicsList() {
+	    Collection collection = new Collection("Marvel");
+	    ObservableList<Comic> comics = FXCollections.observableArrayList();
+	    Comic comic = new Comic("Batman", 15);
+	    comics.add(comic);
 
-    @Test
-    public void testAddComicDoesNotAddDuplicate() {
-        Collection coll = new Collection("Favorites");
-        Comic comic = new Comic("Batman", 1);
-        coll.addComic(comic);
-        coll.addComic(comic);
-        assertEquals(1, coll.getComics().size());
-    }
+	    collection.setComics(comics);
 
-    @Test
-    public void testAddComicNullDoesNothing() {
-        Collection coll = new Collection("Favorites");
-        coll.addComic(null);
-        assertTrue(coll.getComics().isEmpty());
-    }
+	    assertEquals(1, collection.getComics().size());
+	    assertEquals(comic, collection.getComics().get(0));
+	}
 
-    @Test
-    public void testRemoveComicRemovesComic() {
-        Collection coll = new Collection("Favorites");
-        Comic comic = new Comic("Batman", 1);
-        coll.addComic(comic);
-        coll.removeComic(comic);
-        assertTrue(coll.getComics().isEmpty());
-    }
+	@Test
+	public void testToStringReturnsCollectionName() {
+	    Collection collection = new Collection("Marvel");
+	    assertEquals("Marvel", collection.toString());
+	}
 
-    @Test
-    public void testRemoveComicNotInListDoesNothing() {
-        Collection coll = new Collection("Favorites");
-        Comic comic1 = new Comic("Batman", 1);
-        Comic comic2 = new Comic("Superman", 2);
-        coll.addComic(comic1);
-        coll.removeComic(comic2);
-        assertEquals(1, coll.getComics().size());
-        assertTrue(coll.getComics().contains(comic1));
-    }
+	@Test
+	public void testAddComicAddsComicWhenValidAndNotDuplicate() {
+	    Collection collection = new Collection("Marvel");
+	    Comic comic = new Comic("Spider-Man", 10);
+	    collection.addComic(comic);
 
-    @Test
-    public void testToStringReturnsName() {
-        Collection coll = new Collection("Favorites");
-        assertEquals("Favorites", coll.toString());
-    }
+	    assertEquals(1, collection.getComics().size());
+	    assertEquals(comic, collection.getComics().get(0));
+	}
+
+	@Test
+	public void testAddComicDoesNotAddNullComic() {
+	    Collection collection = new Collection("Marvel");
+	    collection.addComic(null);
+	    assertTrue(collection.getComics().isEmpty());
+	}
+
+	@Test
+	public void testAddComicDoesNotAddDuplicateComic() {
+	    Collection collection = new Collection("Marvel");
+	    Comic comic = new Comic("Iron Man", 37);
+	    collection.addComic(comic);
+	    collection.addComic(comic);
+
+	    assertEquals(1, collection.getComics().size());
+	}
+
+	@Test
+	public void testRemoveComicRemovesComicIfExists() {
+	    Collection collection = new Collection("Marvel");
+	    Comic comic = new Comic("Thor", 98);
+	    collection.addComic(comic);
+
+	    collection.removeComic(comic);
+
+	    assertTrue(collection.getComics().isEmpty());
+	}
+
+	@Test
+	public void testRemoveComicDoesNothingIfComicNotInList() {
+	    Collection collection = new Collection("Marvel");
+	    Comic comic = new Comic("Hulk", 76);
+	    collection.removeComic(comic);
+
+	    assertTrue(collection.getComics().isEmpty());
+	}
 }

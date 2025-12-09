@@ -35,9 +35,9 @@ public class ComicWindow {
             }
         });
 
-        BooleanBinding invalidIssue = this.vm.getIssueNum().isEqualTo(0);
+        BooleanBinding invalidIssueNum = this.vm.getIssueNum().isEqualTo(0);
         this.confirmAdd.disableProperty().bind(
-            this.vm.getComicName().isEmpty().or(invalidIssue)
+            this.vm.getComicName().isEmpty().or(invalidIssueNum)
         );
     }
 

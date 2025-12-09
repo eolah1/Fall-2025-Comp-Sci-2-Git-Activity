@@ -2,7 +2,6 @@ package edu.westga.cs1302.Collection.viewmodel;
 
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
-import edu.westga.cs1302.Collection.view.ComicWindow;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
@@ -12,11 +11,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class ComicWindowViewModel {
 

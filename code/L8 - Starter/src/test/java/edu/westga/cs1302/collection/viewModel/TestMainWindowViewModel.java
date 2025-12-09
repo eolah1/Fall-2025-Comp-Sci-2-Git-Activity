@@ -6,103 +6,93 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
-import edu.westga.cs1302.Collection.view.MainWindow;
-import edu.westga.cs1302.Collection.viewmodel.ComicWindowViewModel;
-import edu.westga.cs1302.Collection.viewmodel.MainWindowViewModel;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 class TestMainWindowViewModel {
 
 	@Test
-    public void testConstructorInitializesProperties() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-
-        assertNotNull(vm.getName());
-        assertEquals("", vm.getName().get());
-
-        assertNotNull(vm.getDisplayCollections());
-        assertTrue(vm.getDisplayCollections().isEmpty());
-
-        assertNotNull(vm.getSelectedCollections());
-        assertNull(vm.getSelectedCollections().get());
+    public void testConstructorInitializesWithGivenName() {
+        Collection collection = new Collection("Marvel");
+        assertEquals("Marvel", collection.getName());
     }
 
     @Test
-    public void testAddCollectionAddsNewCollection() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set("Favorites");
-
-        vm.addCollection();
-
-        assertEquals(1, vm.getDisplayCollections().size());
-        assertEquals("Favorites", vm.getDisplayCollections().get(0).getName());
+    public void testConstructorInitializesWithEmptyComicsList() {
+        Collection collection = new Collection("Marvel");
+        assertTrue(collection.getComics().isEmpty());
     }
 
     @Test
-    public void testAddCollectionClearsNameAfterAdd() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set("Favorites");
-
-        vm.addCollection();
-
-        assertEquals("", vm.getName().get());
+    public void testSetNameUpdatesCollectionName() {
+        Collection collection = new Collection("Marvel");
+        collection.setName("DC");
+        assertEquals("DC", collection.getName());
     }
 
     @Test
-    public void testAddCollectionDoesNotAddIfNameIsEmpty() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set("");
+    public void testSetComicsReplacesComicsList() {
+        Collection collection = new Collection("Marvel");
+        ObservableList<Comic> comics = FXCollections.observableArrayList();
+        Comic comic = new Comic("Batman", 15);
+        comics.add(comic);
 
-        vm.addCollection();
+        collection.setComics(comics);
 
-        assertTrue(vm.getDisplayCollections().isEmpty());
+        assertEquals(1, collection.getComics().size());
+        assertEquals(comic, collection.getComics().get(0));
     }
 
     @Test
-    public void testAddCollectionDoesNotAddIfNameIsNull() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set(null);
-
-        vm.addCollection();
-
-        assertTrue(vm.getDisplayCollections().isEmpty());
+    public void testToStringReturnsCollectionName() {
+        Collection collection = new Collection("Marvel");
+        assertEquals("Marvel", collection.toString());
     }
 
     @Test
-    public void testAddCollectionDoesNotAddDuplicate() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set("Favorites");
-        vm.addCollection();
+    public void testAddComicAddsComicWhenValidAndNotDuplicate() {
+        Collection collection = new Collection("Marvel");
+        Comic comic = new Comic("Spider-Man", 10);
+        collection.addComic(comic);
 
-        vm.getName().set("Favorites");
-        vm.addCollection();
-
-        assertEquals(1, vm.getDisplayCollections().size());
+        assertEquals(1, collection.getComics().size());
+        assertEquals(comic, collection.getComics().get(0));
     }
 
     @Test
-    public void testRemoveCollectionRemovesSelected() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set("Favorites");
-        vm.addCollection();
-
-        Collection coll = vm.getDisplayCollections().get(0);
-        vm.getSelectedCollections().set(coll);
-
-        vm.removeCollection();
-
-        assertTrue(vm.getDisplayCollections().isEmpty());
+    public void testAddComicDoesNotAddNullComic() {
+        Collection collection = new Collection("Marvel");
+        collection.addComic(null);
+        assertTrue(collection.getComics().isEmpty());
     }
 
     @Test
-    public void testRemoveCollectionDoesNothingIfNoneSelected() {
-        MainWindowViewModel vm = new MainWindowViewModel();
-        vm.getName().set("Favorites");
-        vm.addCollection();
+    public void testAddComicDoesNotAddDuplicateComic() {
+        Collection collection = new Collection("Marvel");
+        Comic comic = new Comic("Iron Man", 37);
+        collection.addComic(comic);
+        collection.addComic(comic);
 
-        vm.getSelectedCollections().set(null);
-        vm.removeCollection();
+        assertEquals(1, collection.getComics().size());
+    }
 
-        assertEquals(1, vm.getDisplayCollections().size());
+    @Test
+    public void testRemoveComicRemovesComicIfExists() {
+        Collection collection = new Collection("Marvel");
+        Comic comic = new Comic("Thor", 98);
+        collection.addComic(comic);
+
+        collection.removeComic(comic);
+
+        assertTrue(collection.getComics().isEmpty());
+    }
+
+    @Test
+    public void testRemoveComicDoesNothingIfComicNotInList() {
+        Collection collection = new Collection("Marvel");
+        Comic comic = new Comic("Hulk", 76);
+        collection.removeComic(comic);
+
+        assertTrue(collection.getComics().isEmpty());
     }
 }
