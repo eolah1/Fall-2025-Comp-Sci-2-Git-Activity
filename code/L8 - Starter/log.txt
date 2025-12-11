@@ -1,3 +1,201 @@
+commit 311d3f6422ea0c9208e20519a60c25ccc54846c8
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Dec 9 07:16:12 2025 -0500
+
+    Applied CheckStyle Fixes
+    
+    Improved code style with checkstyle fixes.
+
+commit a0ed0428d9dc014186ea2a2d85a5b678f627f6ff
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Dec 9 01:22:51 2025 -0500
+
+    Input Validation for Finding a Comic by Title/Issue Number
+    
+    Implemented input validation for find comic button.
+    Button is enabled only when both title and issue number fields are filled.
+
+commit dbe8890c0b745aad23d253fc94bab7b105fab218
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Tue Dec 9 00:17:58 2025 -0500
+
+    Binding View and ViewModel for Searching a Comic
+    >
+    > Implemented appropriate bindings for searching using a Title/Issue Nummber.
+
+commit 5810e2d2703c1e12804e3232f914d6ef9f5b7a59
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 23:44:32 2025 -0500
+
+    ViewModel for Finding a Comic by Title/Issue Number
+    
+    Added search logic to MainWindowViewModel using a Map title/issue searching.
+
+commit d8d8742cfcf83e0b41945f32e83bcbc2520d7b04
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 23:24:46 2025 -0500
+
+    Model for Finding a Comic by Title/Issue Number
+    
+    Implemented methods for searching and finding comics.
+
+commit c92c63d7f279d4dcb7a462aa8ecb15e58ea95109
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 23:06:41 2025 -0500
+
+    View for Finding a Comic by Title/issue Number
+    
+    Implemented fields to search by comic title and issue number and
+    a button to search for comic.
+
+commit cfc3e540e53e80a5a9684d706cfa66371395f064
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 22:39:54 2025 -0500
+
+    Input Validation for Adding Comic to a Colection
+    
+    Implemented junit tests
+    Improved logic to ensure button to add comic is enabled only when the
+    title and issue number fields are not empty.
+
+commit a869455498b3e970f92dc9fea8482115b73f2cf2
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 20:55:56 2025 -0500
+
+    Input Validation for Adding Comic to a Collection
+    
+    Button to add comic is not enabled unless both the title and issue
+    number fileds are filled in.
+
+commit 937454ceeab49719ad58bcfe0f8cb5fa56e75e02
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 20:47:45 2025 -0500
+
+    Binding View and ViewModel for Adding Comic to Collection
+    
+    Implemented databinding to display comics for the selected collection
+    Implemented databinding for adding a comic and removing comics.
+
+commit da22e7deec853789f0aabfc3e886273797fd0fbb
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 20:36:51 2025 -0500
+
+    View Model for Adding Comic to a Collection
+    
+    Implemented methods to add and remove comics.
+
+commit 9786999bb8e16e4266a04f8144e67123fec49e15
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 17:50:11 2025 -0500
+
+    Model for Adding Comic to a Collection
+    
+    Implemented an appropriate data class to store a comic
+    Updated the Collection class to store a list of comics.
+
+commit 2628eb3cfb08accc79334330d9663a2fd1cac676
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 17:28:42 2025 -0500
+
+    View for Adding Comic to a Collection
+    
+    Updated MainWindow to Display a list of comics, add and remove comic
+    Implemented new fxml file to display a new window.
+
+commit 31f6ecdead0c9423b522dc0f816f12f04933f6d5
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 16:37:36 2025 -0500
+
+    Input Validation for Storing Collections
+    >
+    > Added Implementation to ensure that the add collections button is only
+    > enabled when the name text field is not empty.
+
+commit 3c263a4772b2c4d7cb642dc0503549288e04af13
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 16:33:03 2025 -0500
+
+    Binding View and ViewModel for Storing Collections
+    
+    Implemented databinding and event handlers.
+
+commit 7b8e79f8a4b8b3638cd486203006b87931f31c45
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 16:16:52 2025 -0500
+
+    ViewModel for Storing Collections
+    
+    Added appropriate properties.
+    Implemented Add and Remove collection methods.
+
+commit 8c821b2e94e06de918b7c460d94b809a0938cf22
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 14:06:14 2025 -0500
+
+    Model for Storing Collections
+    
+    Implemented Collection class.
+
+commit 575e21568b54833882ece3b949cf72508fd0a219
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 13:38:58 2025 -0500
+
+    View for Storing Collections
+    
+    Added appropriate Ui components for storing collections.
+
+commit 06ec89e7bbb9c7cdc2122c87fda8024b7b2b7bc3
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 8 12:58:27 2025 -0500
+
+    View for Storing Collections
+    
+    Added appropriate UI components for storing collections
+
+commit 094beb00bffc3db0f5be784bbebce8c60bc0e5ea
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 1 15:25:18 2025 -0500
+
+    Prevents duplicate contacts
+    
+    Updated the system to not allow duplicate names or phone numbers.
+    Implemented appropriate tests.
+
+commit 43d7b8141c8d0ab66db57a638794a73173216f9e
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 1 14:57:06 2025 -0500
+
+    Lookup contact by system name or phone number
+    
+    Updated findContact method to not loop
+    Implemented tests for MainWindowViewModel
+
+commit cea4bce2a0abecac1dad5aff53cd937694d54a62
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Mon Dec 1 14:21:02 2025 -0500
+
+    Implemented Maps and updated addContact
+    
+    When adding a contact, the contact is inserted in the list and maps
+
+commit 8b8bdbb7d9955a5ab440a6488bdb506fdb697a97
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 19 13:12:30 2025 -0500
+
+    Enable/Disbale Generate Password
+    
+    Updated UI to enable/disable generate password button based on input.
+
+commit f1f7fa107431bf5d7a1de75df7d060663070b420
+Author: eolah1 <eolah1@my.westga.edu>
+Date:   Wed Nov 19 12:32:58 2025 -0500
+
+    Added Menu bar with Save, ABout, Close Menu Items
+    
+    Save opens a FileChooser Dialog allowing user to specify a .txt file.
+    About displays a pop up that describes the purpose of the project.
+    Close exits the application.
+
 commit 779d4a2790f432506e1395e0015b102335dcb6aa
 Author: eolah1 <eolah1@my.westga.edu>
 Date:   Wed Nov 12 14:58:43 2025 -0500

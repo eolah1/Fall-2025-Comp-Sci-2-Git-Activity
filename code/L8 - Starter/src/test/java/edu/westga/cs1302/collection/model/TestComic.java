@@ -11,14 +11,14 @@ class TestComic {
 	    @Test
 	    public void testConstructorInitializesFieldsCorrectly() {
 	        Comic comic = new Comic("Spider-Man", 10);
-	        assertEquals("Spider-Man", comic.getComicName());
+	        assertEquals("Spider-Man", comic.getTitle());
 	        assertEquals(10, comic.getIssueNum());
 	    }
 
 	    @Test
 	    public void testGetComicNameReturnsCorrectName() {
 	        Comic comic = new Comic("Batman", 15);
-	        assertEquals("Batman", comic.getComicName());
+	        assertEquals("Batman", comic.getTitle());
 	    }
 
 	    @Test
@@ -31,7 +31,7 @@ class TestComic {
 	    public void testSetNameUpdatesComicName() {
 	        Comic comic = new Comic("Thor", 98);
 	        comic.setName("Mighty Thor");
-	        assertEquals("Mighty Thor", comic.getComicName());
+	        assertEquals("Mighty Thor", comic.getTitle());
 	    }
 
 	    @Test

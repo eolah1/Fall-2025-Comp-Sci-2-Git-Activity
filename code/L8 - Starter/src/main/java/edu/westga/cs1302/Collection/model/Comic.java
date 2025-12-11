@@ -8,17 +8,23 @@ package edu.westga.cs1302.Collection.model;
  */
 public class Comic {
 
-    private String comicName;
+    private String title;
     private int issueNum;
     
     /**
      * Creates a new Comic with the given name and issue number.
      * 
-     * @param comicName the title of the comic
+     * @param title the title of the comic
      * @param issueNum the issue number of the comic
      */
-    public Comic(String comicName, int issueNum) {
-        this.comicName = comicName;
+    public Comic(String title, int issueNum) {
+    	if (title == null || title.isEmpty()) {
+    		throw new IllegalArgumentException("Comic name cannot be null or blank.");
+    	}
+    	if (issueNum < 0) {
+    		throw new IllegalArgumentException("Issue Number must be a non negative integer.");
+    	}
+        this.title = title;
         this.issueNum = issueNum;
     }
     
@@ -27,8 +33,8 @@ public class Comic {
      * 
      * @return the comic name
      */
-    public String getComicName() {
-        return this.comicName;
+    public String getTitle() {
+        return this.title;
     }
     
     /**
@@ -41,21 +47,12 @@ public class Comic {
     }
     
     /**
-     * Sets the comic's name.
-     * 
-     * @param comicName the new comic name
-     */
-    public void setName(String comicName) {
-        this.comicName = comicName;
-    }
-    
-    /**
      * Returns a string representation of the comic.
      * 
      * @return the comic name and issue number
      */
     @Override
     public String toString() {
-        return this.comicName + " (Issue #: " + this.issueNum + ")";
+        return this.title + " (Issue #: " + this.issueNum + ")";
     }
 }

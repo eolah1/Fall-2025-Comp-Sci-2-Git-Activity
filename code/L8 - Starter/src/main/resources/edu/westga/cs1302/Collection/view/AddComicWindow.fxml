@@ -7,7 +7,7 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/19"
-            fx:controller="edu.westga.cs1302.Collection.view.ComicWindow"
+            fx:controller="edu.westga.cs1302.Collection.view.AddComicWindow"
             prefWidth="367.0" prefHeight="171.0">
    <children>
       <TextField fx:id="comicName" layoutX="14.0" layoutY="14.0"

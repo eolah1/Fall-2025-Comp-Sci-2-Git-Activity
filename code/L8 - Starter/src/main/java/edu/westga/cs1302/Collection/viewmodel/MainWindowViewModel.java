@@ -5,8 +5,10 @@ import java.util.Map;
 
 import edu.westga.cs1302.Collection.model.Collection;
 import edu.westga.cs1302.Collection.model.Comic;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,7 +29,7 @@ public class MainWindowViewModel {
     private ListProperty<Comic> displayComics;
     private ObjectProperty<Comic> selectedComic;
     private StringProperty comicName;
-    private ObjectProperty<Integer> issueNum;
+    private IntegerProperty issueNum;
     private Map<String, Comic> comicMap = new HashMap<>();
 
     /**
@@ -40,7 +42,7 @@ public class MainWindowViewModel {
         this.displayComics = new SimpleListProperty<>(FXCollections.observableArrayList());
         this.selectedComic = new SimpleObjectProperty<>();
         this.comicName = new SimpleStringProperty("");
-        this.issueNum = new SimpleObjectProperty<>(0);
+        this.issueNum = new SimpleIntegerProperty(0);
         
         this.selectedCollection.addListener((obs, oldCollection, newCollection) -> {
             if (newCollection != null) {
@@ -110,7 +112,7 @@ public class MainWindowViewModel {
      * 
      * @return the issue number property
      */
-    public ObjectProperty<Integer> getIssueNum() { 
+    public IntegerProperty getIssueNum() { 
         return this.issueNum; 
     }
 
@@ -162,7 +164,7 @@ public class MainWindowViewModel {
         if (!selected.getComics().contains(newComic)) {
             selected.addComic(newComic);
             
-            String key = newComic.getComicName().toLowerCase() + "#" + newComic.getIssueNum();
+            String key = newComic.getTitle().toLowerCase() + "#" + newComic.getIssueNum();
             this.comicMap.put(key, newComic);
         }
 
@@ -192,7 +194,7 @@ public class MainWindowViewModel {
      */
     public void addComic(Comic comic) {
         if (comic != null) {
-            String key = comic.getComicName().toLowerCase() + "#" + comic.getIssueNum();
+            String key = comic.getTitle().toLowerCase() + "#" + comic.getIssueNum();
             this.comicMap.put(key, comic);
             this.displayComics.add(comic);
         }

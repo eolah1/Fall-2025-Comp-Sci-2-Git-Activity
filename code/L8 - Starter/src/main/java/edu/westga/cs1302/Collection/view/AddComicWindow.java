@@ -7,14 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 
 /**
- * Comic window controller for adding a comic to a collection.
+ * Controller for  the AddComicWindow.
  * 
  * @author CS 1302
  * @version Fall 2025
  */
-public class ComicWindow {
+public class AddComicWindow {
 
     @FXML
     private Button confirmAdd;
@@ -36,20 +37,11 @@ public class ComicWindow {
 
         this.comicName.textProperty().bindBidirectional(this.vm.getComicName());
 
-        this.issueNumber.textProperty().addListener((obs, oldVal, newVal) -> {
-            try {
-                if (newVal == null || newVal.isBlank()) {
-                    this.vm.getIssueNum().set(0);
-                    return;
-                }
-                int val = Integer.parseInt(newVal);
-                this.vm.getIssueNum().set(val);
-            } catch (NumberFormatException error) {
-                this.vm.getIssueNum().set(0);
-            }
-        });
-
-        BooleanBinding invalidIssueNum = this.vm.getIssueNum().isEqualTo(0);
+        this.issueNumber.textProperty().bindBidirectional(
+        		this.vm.getIssueNum(), new NumberStringConverter()
+        );
+        
+        BooleanBinding invalidIssueNum = this.vm.getIssueNum().lessThan(0);
         this.confirmAdd.disableProperty().bind(
             this.vm.getComicName().isEmpty().or(invalidIssueNum)
         );

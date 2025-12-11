@@ -19,6 +19,9 @@ import javafx.scene.control.ListView;
 
 /**
  * Main window controller for managing comic collections and comics.
+ * 
+ * @author CS 1302
+ * @version Fall 2025
  */
 public class MainWindow {
 
@@ -43,7 +46,7 @@ public class MainWindow {
     @FXML
     private ListView<Comic> displayComics;
 
-    public MainWindowViewModel vm;
+    private MainWindowViewModel vm;
 
     /**
      * Initializes bindings between the view and the ViewModel.
@@ -66,6 +69,11 @@ public class MainWindow {
             try {
                 this.vm.getIssueNum().set(Integer.parseInt(newVal));
             } catch (NumberFormatException error) {
+            	Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText("Issue number must be numeric");
+                alert.setContentText("You entered: " + newVal);
+                alert.showAndWait();
                 this.vm.getIssueNum().set(0);
             }
         });
@@ -123,11 +131,11 @@ public class MainWindow {
         }
 
         FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/edu/westga/cs1302/Collection/view/ComicWindow.fxml")
+            getClass().getResource("/edu/westga/cs1302/Collection/view/AddComicWindow.fxml")
         );
         Parent root = loader.load();
 
-        ComicWindow controller = loader.getController();
+        AddComicWindow controller = loader.getController();
         controller.setViewModel(this.vm);
 
         Stage stage = new Stage();

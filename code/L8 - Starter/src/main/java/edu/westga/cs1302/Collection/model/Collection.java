@@ -20,6 +20,9 @@ public class Collection {
      * @param name the name of the collection
      */
     public Collection(String name) {
+    	if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Collection name cannot be null or blank");
+        }
         this.name = name;
         this.comics = FXCollections.observableArrayList();
     }
@@ -40,24 +43,6 @@ public class Collection {
      */
     public String getName() {
         return this.name;
-    }
-    
-    /**
-     * Sets the comics in this collection.
-     * 
-     * @param comics the new list of comics
-     */
-    public void setComics(ObservableList<Comic> comics) {
-        this.comics = comics;
-    }
-    
-    /**
-     * Sets the name of this collection.
-     * 
-     * @param name the new collection name
-     */
-    public void setName(String name) {
-        this.name = name;
     }
     
     /**
